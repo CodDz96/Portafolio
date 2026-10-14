@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Creative Developer</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Creative Developer: diseño, fotografía y desarrollo de sitios web.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: hoja de contactos de fotógrafo. Marcas de corte de imprenta enmarcan el trabajo; los proyectos se leen como fotogramas con su ficha técnica. */
+:root {
+  --paper: #eef0f3;
+  --sheet: #f8f9fb;
+  --ink: #151a22;
+  --muted: #5a6372;
+  --line: #cfd4dc;
+  --accent: #2c4bd6;
+  --accent-ink: #ffffff;
+  --mark: #d6336c;
+  --display: "Bricolage Grotesque", "Arial Narrow", system-ui, sans-serif;
+  --body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0f131a; --sheet: #161b24; --ink: #e8ebf0; --muted: #9aa3b2;
+    --line: #2a3140; --accent: #7d93ff; --accent-ink: #0f131a; --mark: #ff6b9a;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0f131a; --sheet: #161b24; --ink: #e8ebf0; --muted: #9aa3b2;
+  --line: #2a3140; --accent: #7d93ff; --accent-ink: #0f131a; --mark: #ff6b9a;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--paper); color: var(--ink);
+  font-family: var(--body); font-size: 1.0625rem; line-height: 1.6;
+  margin: 0;
+}
+.wrap {
+  max-width: 72rem; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+h1, h2, h3 { font-family: var(--display); line-height: 1.05; text-wrap: balance; margin: 0; }
+p { margin: 0; }
+a { color: inherit; }
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 3px;
+}
+.label {
+  font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--muted);
+}
+
+/* Navegación */
+header.top {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10;
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+}
+header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 0.9rem; }
+.brand { font-family: var(--display); font-weight: 800; font-size: 1.15rem; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+.brand .dot { width: 0.7rem; height: 0.7rem; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent); }
+nav.links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+nav.links a { text-decoration: none; font-weight: 500; font-size: 0.95rem; color: var(--muted); }
+nav.links a:hover { color: var(--ink); }
+@media (max-width: 640px) { nav.links a:not(.cta-link) { display: none; } }
+.cta-link { color: var(--accent) !important; }
+
+/* Hero con marcas de corte */
+.hero { padding-block: clamp(3rem, 8vw, 6.5rem) clamp(2.5rem, 6vw, 4.5rem); }
+.frame { position: relative; padding: clamp(1.25rem, 4vw, 3rem); }
+.frame::before, .frame::after, .frame > .c1, .frame > .c2 {
+  content: ""; position: absolute; width: 22px; height: 22px; border-color: var(--mark); border-style: solid;
+}
+.frame::before { top: 0; left: 0; border-width: 2px 0 0 2px; }
+.frame::after { top: 0; right: 0; border-width: 2px 2px 0 0; }
+.frame > .c1 { bottom: 0; left: 0; border-width: 0 0 2px 2px; }
+.frame > .c2 { bottom: 0; right: 0; border-width: 0 2px 2px 0; }
+.hero h1 { font-size: clamp(2.6rem, 8.5vw, 6.2rem); font-weight: 800; letter-spacing: -0.03em; max-width: 14ch; }
+.hero h1 em { font-style: normal; color: var(--accent); }
+.hero .lede { margin-top: 1.5rem; max-width: 40rem; font-size: clamp(1.1rem, 2vw, 1.3rem); color: var(--muted); }
+.hero .row { margin-top: 2rem; display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; }
+.btn {
+  display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 1.3rem;
+  border-radius: 999px; font-weight: 600; text-decoration: none; border: 1.5px solid var(--ink);
+  font-family: var(--body); font-size: 1rem; cursor: pointer; background: transparent; color: var(--ink);
+  transition: transform .15s ease, background .15s ease;
+}
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.btn:hover { transform: translateY(-2px); }
+.meta-strip { margin-top: 2.5rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+
+section { padding-block: clamp(3rem, 7vw, 5.5rem); border-top: 1px solid var(--line); }
+.sec-head { display: grid; gap: 0.75rem; margin-bottom: 2.25rem; max-width: 44rem; }
+.sec-head h2 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; letter-spacing: -0.02em; }
+.sec-head p { color: var(--muted); }
+
+/* Servicios */
+.services { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.service { background: var(--sheet); padding: 1.6rem; display: grid; gap: 0.6rem; align-content: start; min-width: 0; }
+.service h3 { font-size: 1.35rem; }
+.service p { color: var(--muted); font-size: 0.98rem; }
+.service .label { color: var(--accent); }
+
+/* Proyectos: hoja de contactos */
+.sheet { display: grid; grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); gap: 1.75rem; }
+.shot { display: grid; gap: 0.85rem; min-width: 0; }
+.film { background: var(--ink); padding: 10px 0; border-radius: 4px; position: relative; }
+.film::before, .film::after {
+  content: ""; position: absolute; left: 6px; right: 6px; height: 5px;
+  background: repeating-linear-gradient(90deg, var(--paper) 0 7px, transparent 7px 14px); opacity: .55;
+}
+.film::before { top: 2px; } .film::after { bottom: 2px; }
+.film canvas { display: block; width: 100%; aspect-ratio: 4 / 3; max-width: 100%; }
+.shot .exif { display: flex; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap; }
+.shot h3 { font-size: 1.4rem; }
+.shot p { color: var(--muted); font-size: 0.98rem; }
+.tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.tag { font-family: var(--mono); font-size: 0.72rem; padding: 0.2rem 0.55rem; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); }
+.sample { font-family: var(--mono); font-size: 0.72rem; color: var(--mark); }
+
+/* Proceso: es una secuencia real */
+.steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 1.5rem; counter-reset: s; }
+.steps li { counter-increment: s; display: grid; gap: 0.5rem; padding-top: 1rem; border-top: 2px solid var(--ink); }
+.steps li::before { content: "Paso " counter(s); font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.steps h3 { font-size: 1.2rem; }
+.steps p { color: var(--muted); font-size: 0.97rem; }
+
+/* Sobre mí */
+.about { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: clamp(1.5rem, 5vw, 4rem); align-items: start; }
+@media (max-width: 760px) { .about { grid-template-columns: 1fr; } }
+.portrait { aspect-ratio: 4 / 5; max-width: 100%; border: 1px dashed var(--line); display: grid; place-items: center; text-align: center; padding: 1.5rem; background: var(--sheet); position: relative; }
+.about-text { display: grid; gap: 1.1rem; max-width: 38rem; }
+.toolbox { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.5rem; }
+
+/* Contacto */
+.contact { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: clamp(1.5rem, 5vw, 4rem); }
+@media (max-width: 760px) { .contact { grid-template-columns: 1fr; } }
+.contact-info { display: grid; gap: 1rem; align-content: start; }
+.mail { font-family: var(--mono); font-size: 1rem; user-select: all; word-break: break-all; }
+form { display: grid; gap: 1rem; background: var(--sheet); border: 1px solid var(--line); padding: clamp(1.25rem, 3vw, 2rem); }
+.field { display: grid; gap: 0.35rem; }
+.field label { font-weight: 600; font-size: 0.92rem; }
+input, textarea, select {
+  font: inherit; font-size: 1rem; padding: 0.7rem 0.85rem; border: 1px solid var(--line);
+  background: var(--paper); color: var(--ink); border-radius: 6px; width: 100%;
+}
+textarea { min-height: 7rem; resize: vertical; }
+.form-note { font-size: 0.92rem; color: var(--accent); }
+
+footer { border-top: 1px solid var(--line); }
+footer .wrap { padding-block: 1.75rem; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#inicio"><span class="dot" aria-hidden="true"></span>Creative Developer</a>
+    <nav class="links" aria-label="Principal">
+      <a href="#servicios">Servicios</a>
+      <a href="#trabajos">Trabajos</a>
+      <a href="#sobre-mi">Sobre mí</a>
+      <a class="cta-link" href="#contacto">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<main id="inicio">
+  <div class="wrap hero">
+    <div class="frame">
+      <span class="c1"></span><span class="c2"></span>
+      <p class="label">Diseño · Fotografía · Desarrollo web</p>
+      <h1 style="margin-top:1rem">Sitios web que se ven <em>tan bien</em> como funcionan.</h1>
+      <p class="lede">Soy Andree. Diseño, fotografío y programo sitios para negocios y marcas que quieren verse profesionales en internet. Una sola persona para la imagen y el código.</p>
+      <div class="row">
+        <a class="btn primary" href="#contacto">Cotiza tu sitio</a>
+        <a class="btn" href="#trabajos">Ver trabajos</a>
+      </div>
+      <div class="meta-strip">
+        <span class="label">Disponible para proyectos freelance</span>
+        <span class="label">Abierto a trabajo remoto</span>
+      </div>
+    </div>
+  </div>
+
+  <section id="servicios">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="label">Servicios</p>
+        <h2>Lo que hago por tu negocio</h2>
+        <p>Desde la foto del producto hasta el sitio publicado con tu dominio.</p>
+      </div>
+      <div class="services">
+        <article class="service">
+          <span class="label">Sitio nuevo</span>
+          <h3>Diseño y desarrollo web</h3>
+          <p>Sitio a la medida, rápido y adaptado a celular, con tu dominio y correo profesional configurados.</p>
+        </article>
+        <article class="service">
+          <span class="label">Rediseño</span>
+          <h3>Actualización de tu sitio</h3>
+          <p>Le doy una imagen moderna a tu página actual, en WordPress, Wix, Framer o código propio.</p>
+        </article>
+        <article class="service">
+          <span class="label">Foto + Web</span>
+          <h3>Sesión fotográfica para tu sitio</h3>
+          <p>Fotografía de producto, local y equipo, editada en Lightroom y Photoshop y lista para la web.</p>
+        </article>
+        <article class="service">
+          <span class="label">Plan mensual</span>
+          <h3>Mantenimiento</h3>
+          <p>Cambios de contenido, respaldos y mejoras cada mes para que tu sitio nunca se quede atrás.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="trabajos">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="label">Trabajos</p>
+        <h2>Hoja de contactos</h2>
+        <p>Una selección de proyectos con el problema, la solución y las herramientas que usé.</p>
+      </div>
+      <div class="sheet">
+        <article class="shot">
+          <div class="film"><canvas data-seed="1" data-hue="24" aria-label="Vista previa del sitio de la panadería"></canvas></div>
+          <div class="exif"><span class="label">Fotograma 01 · f/2.8 · 1/125s</span><span class="sample">Proyecto de muestra</span></div>
+          <h3>Panadería del barrio</h3>
+          <p>Rediseño con menú en línea, pedidos por WhatsApp y fotos de producto tomadas en el local.</p>
+          <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Lightroom</span></div>
+        </article>
+        <article class="shot">
+          <div class="film"><canvas data-seed="2" data-hue="210" aria-label="Vista previa del sitio de la barbería"></canvas></div>
+          <div class="exif"><span class="label">Fotograma 02 · f/4 · 1/200s</span><span class="sample">Proyecto de muestra</span></div>
+          <h3>Barbería con reservas</h3>
+          <p>Sitio de una página con galería de cortes, precios claros y reserva de citas en línea.</p>
+          <div class="tags"><span class="tag">JavaScript</span><span class="tag">Photoshop</span><span class="tag">Netlify</span></div>
+        </article>
+        <article class="shot">
+          <div class="film"><canvas data-seed="3" data-hue="150" aria-label="Vista previa del portafolio de fotografía"></canvas></div>
+          <div class="exif"><span class="label">Fotograma 03 · f/1.8 · 1/500s</span><span class="sample">Proyecto de muestra</span></div>
+          <h3>Portafolio de fotografía</h3>
+          <p>Galería rápida con imágenes optimizadas, modo oscuro y formulario de contacto.</p>
+          <div class="tags"><span class="tag">Astro</span><span class="tag">Illustrator</span><span class="tag">Vercel</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="proceso">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="label">Proceso</p>
+        <h2>Cómo trabajamos juntos</h2>
+      </div>
+      <ol class="steps">
+        <li><h3>Conversación</h3><p>Me cuentas tu negocio, tus clientes y lo que quieres lograr con el sitio.</p></li>
+        <li><h3>Diseño</h3><p>Te muestro una propuesta visual con tus colores, tipografía y fotos.</p></li>
+        <li><h3>Desarrollo</h3><p>Programo el sitio y lo puedes revisar en un enlace de prueba.</p></li>
+        <li><h3>Lanzamiento</h3><p>Lo publico con tu dominio y te enseño a pedir cambios.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="sobre-mi">
+    <div class="wrap about">
+      <div class="portrait"><span class="label">Aquí va tu retrato<br>(4:5, tomado por ti)</span></div>
+      <div class="about-text">
+        <p class="label">Sobre mí</p>
+        <h2 style="font-size:clamp(2rem,5vw,3.2rem)">Ojo de fotógrafo, manos de programador.</h2>
+        <p>Empecé en la fotografía y el diseño gráfico, y llegué a la programación porque quería construir los sitios donde viven esas imágenes. Hoy uno las dos cosas: cada sitio que hago cuida la luz, la composición y el detalle tanto como el código.</p>
+        <p>Trabajo con negocios locales y marcas personales, y estoy abierto a sumarme a equipos remotos como desarrollador frontend.</p>
+        <div class="toolbox">
+          <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">Git</span>
+          <span class="tag">Photoshop</span><span class="tag">Lightroom</span><span class="tag">Illustrator</span><span class="tag">Premiere</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <div class="wrap contact">
+      <div class="contact-info">
+        <p class="label">Contacto</p>
+        <h2 style="font-size:clamp(2rem,5vw,3.2rem)">Cuéntame de tu proyecto</h2>
+        <p style="color:var(--muted)">Respondo en menos de 24 horas.</p>
+        <p class="label" style="margin-top:0.5rem">Correo</p>
+        <p class="mail">hola@pabellopez.com</p>
+      </div>
+      <form id="contact-form" novalidate>
+        <div class="field"><label for="f-name">Nombre</label><input id="f-name" name="nombre" autocomplete="name" required></div>
+        <div class="field"><label for="f-email">Correo</label><input id="f-email" name="correo" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="f-type">¿Qué necesitas?</label>
+          <select id="f-type" name="servicio">
+            <option>Sitio nuevo</option><option>Rediseño</option><option>Foto + Web</option><option>Mantenimiento</option><option>Oferta de empleo</option>
+          </select>
+        </div>
+        <div class="field"><label for="f-msg">Mensaje</label><textarea id="f-msg" name="mensaje" required></textarea></div>
+        <button class="btn primary" type="submit" style="justify-self:start">Enviar mensaje</button>
+        <p class="form-note" id="form-note" hidden>Gracias. Este formulario es una vista previa; al publicar el sitio lo conectaremos a tu correo.</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="label">© 2026 Creative Developer</span>
+    <span class="label">Diseñado, fotografiado y programado a mano</span>
+  </div>
+</footer>
+
+<script>
+// Vistas previas de los proyectos: maquetas abstractas dibujadas en canvas hasta tener capturas reales.
+(function () {
+  function rand(seed) { return function () { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; }; }
+  function draw(c) {
+    var r = rand(+c.dataset.seed * 97), hue = +c.dataset.hue;
+    var w = c.width = 800, h = c.height = 600, x = c.getContext('2d');
+    var g = x.createLinearGradient(0, 0, w, h);
+    g.addColorStop(0, 'hsl(' + hue + ',45%,62%)'); g.addColorStop(1, 'hsl(' + (hue + 40) + ',40%,30%)');
+    x.fillStyle = g; x.fillRect(0, 0, w, h);
+    for (var i = 0; i < 7; i++) {
+      x.fillStyle = 'hsla(' + (hue + r() * 60) + ',50%,' + (40 + r() * 40) + '%,0.35)';
+      x.beginPath(); x.arc(r() * w, r() * h, 60 + r() * 180, 0, Math.PI * 2); x.fill();
+    }
+    // maqueta de navegador
+    x.fillStyle = 'rgba(255,255,255,0.92)'; x.fillRect(110, 90, 580, 420);
+    x.fillStyle = 'rgba(20,26,34,0.85)'; x.fillRect(110, 90, 580, 34);
+    ['#ff5f57', '#febc2e', '#28c840'].forEach(function (col, k) { x.fillStyle = col; x.beginPath(); x.arc(132 + k * 20, 107, 6, 0, 7); x.fill(); });
+    x.fillStyle = 'hsl(' + hue + ',45%,55%)'; x.fillRect(140, 150, 250, 180);
+    x.fillStyle = 'rgba(20,26,34,0.8)'; x.fillRect(410, 160, 240, 22);
+    x.fillStyle = 'rgba(20,26,34,0.35)';
+    for (var j = 0; j < 5; j++) x.fillRect(410, 200 + j * 22, 200 + r() * 40, 10);
+    x.fillStyle = 'hsl(' + hue + ',60%,45%)'; x.fillRect(410, 320, 110, 30);
+    for (var k = 0; k < 3; k++) { x.fillStyle = 'hsla(' + hue + ',35%,' + (55 + k * 8) + '%,1)'; x.fillRect(140 + k * 180, 360, 160, 120); }
+  }
+  document.querySelectorAll('.film canvas').forEach(draw);
+
+  var form = document.getElementById('contact-form');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    document.getElementById('form-note').hidden = false;
+  });
+})();
+</script>
+</body>
+</html>
