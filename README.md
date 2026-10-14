@@ -1,4 +1,4 @@
-# Creative Developer · Pabel López
+# Pabel López
 
 Portafolio de diseño, fotografía y desarrollo web.
 
