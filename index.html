@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Pabel López</title>
+<title>Vértice</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Pabel López: diseño, fotografía y desarrollo de sitios web.">
+<meta name="description" content="Vértice: agencia digital en Guatemala. Desarrollo web, diseño gráfico, marketing, fotografía y video.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
@@ -66,7 +66,8 @@ header.top {
 }
 header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 0.9rem; }
 .brand { font-family: var(--display); font-weight: 800; font-size: 1.15rem; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
-.brand .dot { width: 0.7rem; height: 0.7rem; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent); }
+.brand { letter-spacing: 0.14em; text-transform: uppercase; }
+.brand .dot { width: 0.85rem; height: 0.75rem; background: var(--accent); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
 nav.links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
 nav.links a { text-decoration: none; font-weight: 500; font-size: 0.95rem; color: var(--muted); }
 nav.links a:hover { color: var(--ink); }
@@ -103,7 +104,9 @@ section { padding-block: clamp(3rem, 7vw, 5.5rem); border-top: 1px solid var(--l
 .sec-head p { color: var(--muted); }
 
 /* Servicios */
-.services { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+@media (max-width: 900px) { .services { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; } }
+@media (max-width: 560px) { .services { grid-template-columns: 1fr !important; } }
+.services { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
 .service { background: var(--sheet); padding: 1.6rem; display: grid; gap: 0.6rem; align-content: start; min-width: 0; }
 .service h3 { font-size: 1.35rem; }
 .service p { color: var(--muted); font-size: 0.98rem; }
@@ -165,7 +168,7 @@ footer .wrap { padding-block: 1.75rem; display: flex; justify-content: space-bet
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="#inicio"><span class="dot" aria-hidden="true"></span>Pabel López</a>
+    <a class="brand" href="#inicio"><span class="dot" aria-hidden="true"></span>Vértice</a>
     <nav class="links" aria-label="Principal">
       <a href="#servicios">Servicios</a>
       <a href="#trabajos">Trabajos</a>
@@ -179,9 +182,9 @@ footer .wrap { padding-block: 1.75rem; display: flex; justify-content: space-bet
   <div class="wrap hero">
     <div class="frame">
       <span class="c1"></span><span class="c2"></span>
-      <p class="label">Diseño · Fotografía · Desarrollo web</p>
-      <h1 style="margin-top:1rem">Sitios web que se ven <em>tan bien</em> como funcionan.</h1>
-      <p class="lede">Soy Pabel López. Diseño, fotografío y programo sitios para negocios y marcas que quieren verse profesionales en internet. Una sola persona para la imagen y el código.</p>
+      <p class="label">Desarrollo web · Diseño · Marketing · Fotografía y video</p>
+      <h1 style="margin-top:1rem">Llevamos tu marca a su <em>punto más alto</em>.</h1>
+      <p class="lede">Vértice es una agencia digital de Guatemala, fundada por Pabel López. Programación, diseño gráfico, marketing, fotografía y video en un solo lugar, para negocios que quieren verse profesionales y crecer en internet.</p>
       <div class="row">
         <a class="btn primary" href="#contacto">Cotiza tu sitio</a>
         <a class="btn" href="#trabajos">Ver trabajos</a>
@@ -197,29 +200,39 @@ footer .wrap { padding-block: 1.75rem; display: flex; justify-content: space-bet
     <div class="wrap">
       <div class="sec-head">
         <p class="label">Servicios</p>
-        <h2>Lo que hago por tu negocio</h2>
-        <p>Desde la foto del producto hasta el sitio publicado con tu dominio.</p>
+        <h2>Todo lo que tu marca necesita</h2>
+        <p>Desde la imagen y el contenido hasta el sitio publicado y las campañas en redes.</p>
       </div>
       <div class="services">
         <article class="service">
-          <span class="label">Sitio nuevo</span>
-          <h3>Diseño y desarrollo web</h3>
-          <p>Sitio a la medida, rápido y adaptado a celular, con tu dominio y correo profesional configurados.</p>
-        </article>
-        <article class="service">
-          <span class="label">Rediseño</span>
-          <h3>Actualización de tu sitio</h3>
-          <p>Le doy una imagen moderna a tu página actual, en WordPress, Wix, Framer o código propio.</p>
-        </article>
-        <article class="service">
-          <span class="label">Foto + Web</span>
-          <h3>Sesión fotográfica para tu sitio</h3>
-          <p>Fotografía de producto, local y equipo, editada en Lightroom y Photoshop y lista para la web.</p>
+          <span class="label">Web</span>
+          <h3>Desarrollo web</h3>
+          <p>Sitios a la medida, rápidos y adaptados a celular, con tu dominio y correo profesional.</p>
         </article>
         <article class="service">
           <span class="label">Plan mensual</span>
-          <h3>Mantenimiento</h3>
-          <p>Cambios de contenido, respaldos y mejoras cada mes para que tu sitio nunca se quede atrás.</p>
+          <h3>Rediseño y mantenimiento</h3>
+          <p>Modernizo tu página actual y la mantengo al día, en WordPress, Wix, Framer o código propio.</p>
+        </article>
+        <article class="service">
+          <span class="label">Marca</span>
+          <h3>Diseño gráfico</h3>
+          <p>Logos, identidad visual, papelería y piezas para redes, hechos en Illustrator y Photoshop.</p>
+        </article>
+        <article class="service">
+          <span class="label">Crecimiento</span>
+          <h3>Marketing digital</h3>
+          <p>Contenido y campañas en Facebook e Instagram para que tu negocio llegue a más clientes.</p>
+        </article>
+        <article class="service">
+          <span class="label">Foto</span>
+          <h3>Fotografía</h3>
+          <p>Producto, local y equipo, editado en Lightroom y Photoshop y listo para web y redes.</p>
+        </article>
+        <article class="service">
+          <span class="label">Video</span>
+          <h3>Edición de video</h3>
+          <p>Reels, anuncios y videos de marca editados en Premiere, listos para publicar.</p>
         </article>
       </div>
     </div>
@@ -283,7 +296,7 @@ footer .wrap { padding-block: 1.75rem; display: flex; justify-content: space-bet
         <p>Trabajo con negocios locales y marcas personales, y estoy abierto a sumarme a equipos remotos como desarrollador frontend.</p>
         <div class="toolbox">
           <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">Git</span>
-          <span class="tag">Photoshop</span><span class="tag">Lightroom</span><span class="tag">Illustrator</span><span class="tag">Premiere</span>
+          <span class="tag">Photoshop</span><span class="tag">Lightroom</span><span class="tag">Illustrator</span><span class="tag">Premiere</span><span class="tag">Meta Ads</span>
         </div>
       </div>
     </div>
@@ -303,7 +316,7 @@ footer .wrap { padding-block: 1.75rem; display: flex; justify-content: space-bet
         <div class="field"><label for="f-email">Correo</label><input id="f-email" name="correo" type="email" autocomplete="email" required></div>
         <div class="field"><label for="f-type">¿Qué necesitas?</label>
           <select id="f-type" name="servicio">
-            <option>Sitio nuevo</option><option>Rediseño</option><option>Foto + Web</option><option>Mantenimiento</option><option>Oferta de empleo</option>
+            <option>Sitio web</option><option>Rediseño o mantenimiento</option><option>Diseño gráfico y marca</option><option>Marketing digital</option><option>Fotografía o video</option><option>Oferta de empleo</option>
           </select>
         </div>
         <div class="field"><label for="f-msg">Mensaje</label><textarea id="f-msg" name="mensaje" required></textarea></div>
@@ -316,7 +329,7 @@ footer .wrap { padding-block: 1.75rem; display: flex; justify-content: space-bet
 
 <footer>
   <div class="wrap">
-    <span class="label">© 2026 Pabel López</span>
+    <span class="label">© 2026 Vértice · Guatemala</span>
     <span class="label">Diseñado, fotografiado y programado a mano</span>
   </div>
 </footer>
