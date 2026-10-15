@@ -371,14 +371,14 @@ footer .wrap { display: flex; justify-content: space-between; gap: 1rem; flex-wr
   function frame(t) {
     var r = cv.getBoundingClientRect(), d = window.devicePixelRatio || 1;
     if (cv.width !== Math.round(r.width * d)) { cv.width = Math.round(r.width * d); cv.height = Math.round(r.height * d); }
-    var w = cv.width, h = cv.height, s = Math.min(w, h) * 0.36;
+    var w = cv.width, h = cv.height, s = Math.min(w, h) * 0.3;
     ctx.clearRect(0, 0, w, h);
     var accent = tok('--accent'), peak = tok('--peak');
     var a = t * 0.00035 + 0.6, ca = Math.cos(a), sa = Math.sin(a), tilt = 0.32, ct = Math.cos(tilt), st = Math.sin(tilt);
     var Q = V.map(function (v) {
       var x = v[0] * ca - v[2] * sa, z = v[0] * sa + v[2] * ca, y = v[1];
-      var y2 = y * ct - z * st, z2 = y * st + z * ct, k = 3.2 / (3.2 + z2);
-      return { x: w / 2 + x * s * k, y: h / 2 + y2 * s * k + s * 0.12, z: z2, wx: x, wy: y2 };
+      var y2 = y * ct - z * st, z2 = y * st + z * ct, k = 4.5 / (4.5 + z2);
+      return { x: w / 2 + x * s * k, y: h / 2 + y2 * s * k + s * 0.05, z: z2, wx: x, wy: y2 };
     });
     // haz de luz desde la cima
     var apex = Q[0];
@@ -388,7 +388,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 1rem; flex-wr
     ctx.beginPath(); ctx.moveTo(apex.x - 3 * d, apex.y); ctx.lineTo(apex.x - 28 * d, 0); ctx.lineTo(apex.x + 28 * d, 0); ctx.lineTo(apex.x + 3 * d, apex.y); ctx.fill();
     ctx.globalAlpha = 1;
     // sombra en el suelo
-    var floor = h / 2 + s * 0.95;
+    var floor = h / 2 + s * 0.85;
     var sh = ctx.createRadialGradient(w / 2, floor, 0, w / 2, floor, s * 1.4);
     sh.addColorStop(0, accent); sh.addColorStop(1, 'transparent');
     ctx.globalAlpha = 0.18; ctx.fillStyle = sh;
