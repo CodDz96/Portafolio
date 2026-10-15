@@ -95,7 +95,7 @@ nav.links a.btn { color: var(--accent-ink); }
 .stage { display: block; width: 100%; max-width: 100%; aspect-ratio: 16 / 5.5; margin-top: 1rem; }
 @media (max-width: 640px) { .stage { aspect-ratio: 16 / 10; } }
 .hero .wrap.legend { display: flex; justify-content: space-between; gap: 1rem; padding-block: 0.5rem 1.5rem; font: 0.78rem var(--mono); text-align: left; }
-.legend .lh { color: var(--heart); } .legend .lm { color: var(--accent); text-align: right; }
+.legend .lm { color: var(--accent); } .legend .lh { color: var(--heart); text-align: right; }
 
 .pillars { border-block: 1px solid var(--line); background: var(--surface); }
 .pillars .wrap { display: flex; justify-content: space-between; gap: 1rem 2rem; flex-wrap: wrap; padding-block: 1.1rem; }
@@ -198,15 +198,15 @@ footer .wrap { display: flex; justify-content: space-between; gap: 1rem; flex-wr
   <div class="hero">
     <div class="wrap">
       <p class="tag">Agencia digital · Guatemala</p>
-      <h1><span class="m">Mente que construye.</span> <span class="h">Corazón que inspira.</span></h1>
-      <p class="lede">Una marca necesita cabeza y corazón. La mente es el código que piensa y construye; el corazón es la imagen que emociona y conecta con tus clientes.</p>
+      <h1><span class="m">Código</span> con <span class="h">corazón</span>.</h1>
+      <p class="lede">Mente que construye, corazón que inspira. Programación, diseño, marketing, fotografía y video para que tu marca cobre vida.</p>
       <div class="row">
         <a class="btn primary" href="#contacto">Cotiza tu proyecto</a>
         <a class="btn" href="#servicios">Ver servicios</a>
       </div>
-      <canvas class="stage" id="stage" aria-label="Un latido que se une con una red de neuronas a través del vértice"></canvas>
+      <canvas class="stage" id="stage" aria-label="Caracteres de código que fluyen y se convierten en un latido"></canvas>
     </div>
-    <div class="wrap legend"><span class="lh">♥ Corazón · Creatividad</span><span class="lm">Mente · Programación ◉</span></div>
+    <div class="wrap legend"><span class="lm">◉ Mente · Programación</span><span class="lh">Corazón · Creatividad ♥</span></div>
   </div>
 
   <div class="pillars">
@@ -379,68 +379,49 @@ footer .wrap { display: flex; justify-content: space-between; gap: 1rem; flex-wr
   function tok(n) { return getComputedStyle(root).getPropertyValue(n).trim(); }
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Latido (corazón) que se une con una red de neuronas (mente) a través del vértice.
-  function ecg(p) {
-    p = p - Math.floor(p);
-    if (p < 0.30) return 0;
-    if (p < 0.36) return -0.15 * Math.sin((p - 0.30) / 0.06 * Math.PI);
-    if (p < 0.40) return 0;
-    if (p < 0.43) return 0.25 * (p - 0.40) / 0.03;
-    if (p < 0.47) return 0.25 - 1.25 * (p - 0.43) / 0.04;
-    if (p < 0.51) return -1 + 1.3 * (p - 0.47) / 0.04;
-    if (p < 0.54) return 0.3 - 0.3 * (p - 0.51) / 0.03;
-    if (p < 0.70) return 0;
-    if (p < 0.80) return -0.22 * Math.sin((p - 0.70) / 0.10 * Math.PI);
-    return 0;
-  }
+  // Código (mente) que fluye y se convierte en un latido (corazón).
   (function () {
     var cv = document.getElementById('stage'), ctx = cv.getContext('2d');
-    var seed = 13; function R() { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; }
-    var nodes = [], links = [];
-    for (var i = 0; i < 30; i++) nodes.push({ u: 0.56 + R() * 0.42, v: 0.1 + R() * 0.8, ph: R() * 6.28 });
-    nodes.forEach(function (n, i) {
-      nodes.map(function (m, j) { return { j: j, d: Math.hypot(n.u - m.u, (n.v - m.v) * 0.4) }; })
-        .filter(function (o) { return o.j !== i; }).sort(function (a, b) { return a.d - b.d; }).slice(0, 3)
-        .forEach(function (o) { if (!links.some(function (l) { return (l[0] === o.j && l[1] === i) || (l[0] === i && l[1] === o.j); })) links.push([i, o.j]); });
-    });
-    var hubs = nodes.map(function (n, i) { return { i: i, u: n.u }; }).sort(function (a, b) { return a.u - b.u; }).slice(0, 5).map(function (o) { return o.i; });
-    var sparks = []; for (var k = 0; k < 12; k++) sparks.push({ l: Math.floor(R() * links.length), t: R(), sp: 0.004 + R() * 0.006 });
+    var seed = 21; function R() { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; }
+    function gs(x, m, sd) { return Math.exp(-((x - m) * (x - m)) / (2 * sd * sd)); }
+    // forma de un latido real: onda P, complejo QRS y onda T
+    function ecg(p) {
+      p = p - Math.floor(p);
+      return 0.11 * gs(p, 0.16, 0.025) - 0.1 * gs(p, 0.355, 0.009) + gs(p, 0.38, 0.011) - 0.26 * gs(p, 0.405, 0.011) + 0.24 * gs(p, 0.6, 0.042);
+    }
+    function smooth(a, b, x) { x = Math.min(1, Math.max(0, (x - a) / (b - a))); return x * x * (3 - 2 * x); }
+    function rgb(hex) { hex = hex.replace('#', ''); return [0, 2, 4].map(function (k) { return parseInt(hex.substr(k, 2), 16); }); }
+    var chars = 'const{}()<>=/;01[]=>&&fn', glyphs = [];
+    for (var i = 0; i < 240; i++) glyphs.push({ off: R(), lane: (R() - 0.5) * 2, sp: 0.8 + R() * 0.4, ph: R() * 6.28, c: chars[Math.floor(R() * chars.length)] });
     function frame(t) {
       var r = cv.getBoundingClientRect(), d = window.devicePixelRatio || 1;
       if (cv.width !== Math.round(r.width * d)) { cv.width = Math.round(r.width * d); cv.height = Math.round(r.height * d); }
-      var w = cv.width, h = cv.height, mid = h * 0.52, cx = w * 0.5;
-      var heart = tok('--heart'), mind = tok('--accent'), peak = tok('--peak');
+      var w = cv.width, h = cv.height, mid = h * 0.55, amp = h * 0.42, period = w * 0.3;
+      var A = rgb(tok('--accent')), B = rgb(tok('--heart'));
+      var phase = reduce ? 0.3 : t * 0.00028, flow = reduce ? 0 : t * 0.000045;
       ctx.clearRect(0, 0, w, h);
-      var amp = h * 0.32, phase = reduce ? 0.2 : t * 0.0006;
-      ctx.strokeStyle = heart; ctx.lineWidth = 2.4 * d; ctx.lineJoin = 'round'; ctx.shadowColor = heart; ctx.shadowBlur = 10 * d;
-      ctx.beginPath();
-      for (var x = 0; x <= cx - 34 * d; x += 2 * d) {
-        var y = mid + ecg(x / (w * 0.22) - phase) * amp;
-        x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-      }
-      ctx.stroke(); ctx.shadowBlur = 0;
-      var P = nodes.map(function (n) { return [n.u * w + Math.sin(t * 0.0008 + n.ph) * 4 * d, n.v * h + Math.cos(t * 0.0007 + n.ph) * 4 * d]; });
-      ctx.strokeStyle = mind; ctx.lineWidth = 1.2 * d; ctx.globalAlpha = 0.45;
-      links.forEach(function (l) { ctx.beginPath(); ctx.moveTo(P[l[0]][0], P[l[0]][1]); ctx.lineTo(P[l[1]][0], P[l[1]][1]); ctx.stroke(); });
-      hubs.forEach(function (i) { ctx.beginPath(); ctx.moveTo(cx + 26 * d, mid); ctx.lineTo(P[i][0], P[i][1]); ctx.stroke(); });
-      ctx.globalAlpha = 1; ctx.fillStyle = mind;
-      P.forEach(function (p, i) { ctx.beginPath(); ctx.arc(p[0], p[1], Math.max(1.5, 2.2 + 1.4 * Math.sin(t * 0.002 + nodes[i].ph)) * d, 0, 7); ctx.fill(); });
-      ctx.fillStyle = peak; ctx.shadowColor = peak; ctx.shadowBlur = 12 * d;
-      sparks.forEach(function (s) {
-        if (!reduce) { s.t += s.sp; if (s.t > 1) { s.t = 0; s.l = Math.floor(Math.random() * links.length); } }
-        var a = P[links[s.l][0]], b = P[links[s.l][1]];
-        ctx.beginPath(); ctx.arc(a[0] + (b[0] - a[0]) * s.t, a[1] + (b[1] - a[1]) * s.t, 2.6 * d, 0, 7); ctx.fill();
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      glyphs.forEach(function (g) {
+        var u = (g.off + flow * g.sp) % 1, x = u * w, f = smooth(0.18, 0.6, u);
+        if (f >= 0.98) return;
+        var spread = h * 0.32 * Math.pow(1 - f, 1.6);
+        var drift = Math.sin(t * 0.0009 + g.ph + u * 6) * 5 * d * (1 - f);
+        var y = mid + g.lane * spread + drift - ecg(x / period - phase) * amp * f;
+        var c = A.map(function (v, k) { return Math.round(v + (B[k] - v) * f); });
+        ctx.globalAlpha = (0.25 + 0.6 * (1 - Math.abs(g.lane) * 0.6)) * (1 - f) * smooth(0, 0.08, u);
+        ctx.fillStyle = 'rgb(' + c.join(',') + ')';
+        ctx.font = '500 ' + Math.round((15 - 6 * f) * d) + 'px "IBM Plex Mono", ui-monospace, monospace';
+        ctx.fillText(g.c, x, y);
       });
-      ctx.shadowBlur = 0;
-      var tw = 32 * d, beat = 1 + 0.12 * Math.max(0, -ecg(cx / (w * 0.22) - phase));
-      ctx.save(); ctx.translate(cx, mid); ctx.scale(beat, beat);
-      var g = ctx.createLinearGradient(0, -tw, 0, tw * 0.8);
-      g.addColorStop(0, peak); g.addColorStop(0.45, mind);
-      ctx.fillStyle = g; ctx.shadowColor = peak; ctx.shadowBlur = 18 * d;
-      ctx.beginPath(); ctx.moveTo(0, -tw); ctx.lineTo(tw * 0.95, tw * 0.8); ctx.lineTo(-tw * 0.95, tw * 0.8); ctx.closePath(); ctx.fill();
-      ctx.shadowBlur = 0; ctx.fillStyle = tok('--bg');
-      ctx.beginPath(); ctx.moveTo(0, -tw * 0.18); ctx.lineTo(tw * 0.48, tw * 0.8); ctx.lineTo(-tw * 0.48, tw * 0.8); ctx.closePath(); ctx.fill();
-      ctx.restore();
+      // la línea del latido nace donde el código se ordena
+      var x0 = w * 0.42, heart = 'rgb(' + B.join(',') + ')';
+      var grad = ctx.createLinearGradient(x0, 0, w, 0);
+      grad.addColorStop(0, 'rgba(' + B.join(',') + ',0)'); grad.addColorStop(0.25, heart); grad.addColorStop(1, heart);
+      ctx.globalAlpha = 1; ctx.strokeStyle = grad; ctx.lineWidth = 2.4 * d; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+      ctx.shadowColor = heart; ctx.shadowBlur = 12 * d;
+      ctx.beginPath();
+      for (var x = x0; x <= w; x += 1.5 * d) { var y = mid - ecg(x / period - phase) * amp; x === x0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y); }
+      ctx.stroke(); ctx.shadowBlur = 0;
       if (!reduce) requestAnimationFrame(frame);
     }
     requestAnimationFrame(frame);
