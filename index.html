@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Grupo Vértice</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Grupo Vértice: agencia digital en Guatemala. Desarrollo web, diseño gráfico, marketing, fotografía y video.">
+<meta name="description" content="Grupo Vértice: mente que construye, corazón que inspira. Agencia digital en Guatemala. Desarrollo web, diseño gráfico, marketing, fotografía y video.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: plano técnico. Una retícula fina de fondo, una pirámide en alambre como símbolo del vértice, y bloques limpios con mucho aire. Oscuro por defecto. */
+/* Layout: plano técnico con retícula fina. Concepto mente y corazón: un latido (lo creativo) y una red de neuronas (el código) unidos por el vértice. Oscuro por defecto. */
 :root {
   --bg: #0c1118;
   --surface: #121a24;
@@ -21,6 +21,7 @@
   --accent: #5b8cff;
   --accent-ink: #0c1118;
   --peak: #ffb547;
+  --heart: #ff5d73;
   --grid: rgba(91, 140, 255, 0.07);
   --display: "Unbounded", "Arial Black", system-ui, sans-serif;
   --body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -30,13 +31,13 @@
 @media (prefers-color-scheme: light) {
   :root:not([data-theme="dark"]) {
     --bg: #f4f6fa; --surface: #ffffff; --raise: #eef2f8; --ink: #0f1722; --muted: #566375;
-    --line: #d9e0ea; --accent: #2f5fe0; --accent-ink: #ffffff; --peak: #c27400;
+    --line: #d9e0ea; --accent: #2f5fe0; --accent-ink: #ffffff; --peak: #c27400; --heart: #d6334b;
     --grid: rgba(47, 95, 224, 0.06); color-scheme: light;
   }
 }
 :root[data-theme="light"] {
   --bg: #f4f6fa; --surface: #ffffff; --raise: #eef2f8; --ink: #0f1722; --muted: #566375;
-  --line: #d9e0ea; --accent: #2f5fe0; --accent-ink: #ffffff; --peak: #c27400;
+  --line: #d9e0ea; --accent: #2f5fe0; --accent-ink: #ffffff; --peak: #c27400; --heart: #d6334b;
   --grid: rgba(47, 95, 224, 0.06); color-scheme: light;
 }
 * { box-sizing: border-box; }
@@ -86,17 +87,15 @@ nav.links a.btn { color: var(--accent-ink); }
 .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
 
 /* Hero */
-.hero .wrap { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 2rem; align-items: center; padding-block: clamp(3rem, 8vw, 6rem); }
-@media (max-width: 860px) { .hero .wrap { grid-template-columns: 1fr; } }
-.hero h1 { font-size: clamp(2.2rem, 6vw, 4.2rem); letter-spacing: -0.02em; margin-top: 1rem; }
-.hero h1 span { color: var(--peak); }
-.hero .lede { margin-top: 1.4rem; max-width: 36rem; font-size: clamp(1.05rem, 1.8vw, 1.22rem); color: var(--muted); }
-.hero .row { margin-top: 2rem; display: flex; gap: 0.75rem; flex-wrap: wrap; }
-.pyramid { position: relative; width: 100%; max-width: 100%; aspect-ratio: 1; border: 1px solid var(--line); border-radius: 18px; background: radial-gradient(circle at 50% 30%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 60%), var(--surface); overflow: hidden; }
-.pyramid canvas { width: 100%; height: 100%; display: block; }
-.pyramid .coord { position: absolute; font-family: var(--mono); font-size: 0.7rem; color: var(--muted); }
-.pyramid .c-tl { top: 12px; left: 14px; } .pyramid .c-br { bottom: 12px; right: 14px; }
-@media (max-width: 860px) { .pyramid { max-width: 26rem; } }
+.hero .wrap { display: grid; justify-items: center; text-align: center; gap: 1.2rem; padding-block: clamp(3rem, 7vw, 5rem) 0; }
+.hero h1 { font-size: clamp(2.1rem, 6vw, 4.2rem); letter-spacing: -0.02em; max-width: 16ch; }
+.hero h1 .m { color: var(--accent); } .hero h1 .h { color: var(--heart); }
+.hero .lede { max-width: 38rem; font-size: clamp(1.05rem, 1.8vw, 1.22rem); color: var(--muted); }
+.hero .row { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-top: 0.5rem; }
+.stage { display: block; width: 100%; max-width: 100%; aspect-ratio: 16 / 5.5; margin-top: 1rem; }
+@media (max-width: 640px) { .stage { aspect-ratio: 16 / 10; } }
+.hero .wrap.legend { display: flex; justify-content: space-between; gap: 1rem; padding-block: 0.5rem 1.5rem; font: 0.78rem var(--mono); text-align: left; }
+.legend .lh { color: var(--heart); } .legend .lm { color: var(--accent); text-align: right; }
 
 .pillars { border-block: 1px solid var(--line); background: var(--surface); }
 .pillars .wrap { display: flex; justify-content: space-between; gap: 1rem 2rem; flex-wrap: wrap; padding-block: 1.1rem; }
@@ -107,16 +106,24 @@ section { padding-block: clamp(3.5rem, 8vw, 6rem); }
 .sec-head { display: grid; gap: 0.75rem; margin-bottom: 2.5rem; max-width: 42rem; }
 .sec-head h2 { font-size: clamp(1.7rem, 4vw, 2.6rem); letter-spacing: -0.01em; }
 
-/* Servicios */
-.services { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
-@media (max-width: 900px) { .services { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+/* Servicios agrupados en mente y corazón */
+.group { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 2fr); gap: 1.5rem; padding-block: 1.75rem; border-top: 1px solid var(--line); }
+@media (max-width: 860px) { .group { grid-template-columns: 1fr; } }
+.group-head { display: grid; gap: 0.5rem; align-content: start; }
+.group-head h3 { font-size: 1.3rem; display: flex; align-items: center; gap: 0.55rem; }
+.group-head h3 svg { width: 1.4rem; height: 1.4rem; flex: none; }
+.group-head p { color: var(--muted); font-size: 0.97rem; }
+.group.mind h3 { color: var(--accent); } .group.heart h3 { color: var(--heart); }
+.services { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
 @media (max-width: 560px) { .services { grid-template-columns: 1fr; } }
-.service { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 1.5rem; display: grid; gap: 0.7rem; align-content: start; min-width: 0; transition: border-color .2s ease, transform .2s ease; }
-.service:hover { border-color: var(--accent); transform: translateY(-3px); }
-.service .icon { width: 2.5rem; height: 2.5rem; border-radius: 10px; display: grid; place-items: center; background: var(--raise); color: var(--accent); }
+.service { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 1.4rem; display: grid; gap: 0.65rem; align-content: start; min-width: 0; transition: border-color .2s ease, transform .2s ease; }
+.group.mind .service:hover { border-color: var(--accent); } .group.heart .service:hover { border-color: var(--heart); }
+.service:hover { transform: translateY(-3px); }
+.service .icon { width: 2.5rem; height: 2.5rem; border-radius: 10px; display: grid; place-items: center; background: var(--raise); }
+.group.mind .icon { color: var(--accent); } .group.heart .icon { color: var(--heart); }
 .service .icon svg { width: 1.3rem; height: 1.3rem; }
-.service h3 { font-size: 1.05rem; }
-.service p { color: var(--muted); font-size: 0.97rem; }
+.service h3 { font-size: 1.02rem; }
+.service p { color: var(--muted); font-size: 0.96rem; }
 
 /* Proyectos */
 .work { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
@@ -190,21 +197,16 @@ footer .wrap { display: flex; justify-content: space-between; gap: 1rem; flex-wr
 <main id="inicio">
   <div class="hero">
     <div class="wrap">
-      <div>
-        <p class="tag">Agencia digital · Guatemala</p>
-        <h1>Llevamos tu marca a su <span>punto más alto</span>.</h1>
-        <p class="lede">Desarrollo web, diseño gráfico, marketing, fotografía y video en un solo equipo. Creamos la presencia digital de negocios que quieren verse profesionales y crecer.</p>
-        <div class="row">
-          <a class="btn primary" href="#contacto">Cotiza tu proyecto</a>
-          <a class="btn" href="#servicios">Ver servicios</a>
-        </div>
+      <p class="tag">Agencia digital · Guatemala</p>
+      <h1><span class="m">Mente que construye.</span> <span class="h">Corazón que inspira.</span></h1>
+      <p class="lede">Una marca necesita cabeza y corazón. La mente es el código que piensa y construye; el corazón es la imagen que emociona y conecta con tus clientes.</p>
+      <div class="row">
+        <a class="btn primary" href="#contacto">Cotiza tu proyecto</a>
+        <a class="btn" href="#servicios">Ver servicios</a>
       </div>
-      <div class="pyramid" aria-hidden="true">
-        <canvas id="pyramid"></canvas>
-        <span class="coord c-tl">14.6349° N</span>
-        <span class="coord c-br">90.5069° O</span>
-      </div>
+      <canvas class="stage" id="stage" aria-label="Un latido que se une con una red de neuronas a través del vértice"></canvas>
     </div>
+    <div class="wrap legend"><span class="lh">♥ Corazón · Creatividad</span><span class="lm">Mente · Programación ◉</span></div>
   </div>
 
   <div class="pillars">
@@ -217,10 +219,15 @@ footer .wrap { display: flex; justify-content: space-between; gap: 1rem; flex-wr
     <div class="wrap">
       <div class="sec-head">
         <p class="tag">Servicios</p>
-        <h2>Todo lo que tu marca necesita</h2>
-        <p class="muted">Desde la imagen y el contenido hasta el sitio publicado y las campañas en redes.</p>
+        <h2>Mente y corazón para tu marca</h2>
+        <p class="muted">La lógica del código y la emoción de la imagen, en un solo equipo.</p>
       </div>
-      <div class="services">
+      <div class="group mind">
+        <div class="group-head">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><circle cx="4" cy="6" r="1.6"/><circle cx="20" cy="6" r="1.6"/><circle cx="4" cy="18" r="1.6"/><circle cx="20" cy="18" r="1.6"/><path d="M5.3 7 9.6 10.4M18.7 7l-4.3 3.4M5.3 17l4.3-3.4M18.7 17l-4.3-3.4"/></svg>Mente</h3>
+          <p>La lógica y la estructura: que todo funcione rápido y sin fallas.</p>
+        </div>
+        <div class="services">
         <article class="service">
           <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 7-5 5 5 5M16 7l5 5-5 5"/></svg></div>
           <h3>Desarrollo web</h3>
@@ -231,6 +238,14 @@ footer .wrap { display: flex; justify-content: space-between; gap: 1rem; flex-wr
           <h3>Rediseño y mantenimiento</h3>
           <p>Modernizamos tu página actual y la mantenemos al día cada mes, en cualquier plataforma.</p>
         </article>
+        </div>
+      </div>
+      <div class="group heart">
+        <div class="group-head">
+          <h3><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-9.5-9.3C1 8 3.4 4.5 7 4.5c2 0 3.6 1.1 5 3 1.4-1.9 3-3 5-3 3.6 0 6 3.5 4.5 7.2C19.5 16.4 12 21 12 21Z"/></svg>Corazón</h3>
+          <p>La emoción: lo que hace que tus clientes sientan algo por tu marca.</p>
+        </div>
+        <div class="services">
         <article class="service">
           <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 21 20H3Z"/><circle cx="12" cy="14" r="2"/></svg></div>
           <h3>Diseño gráfico y marca</h3>
@@ -251,6 +266,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 1rem; flex-wr
           <h3>Edición de video</h3>
           <p>Reels, anuncios y videos de marca editados en Premiere, listos para publicar.</p>
         </article>
+        </div>
       </div>
     </div>
   </section>
@@ -363,63 +379,72 @@ footer .wrap { display: flex; justify-content: space-between; gap: 1rem; flex-wr
   function tok(n) { return getComputedStyle(root).getPropertyValue(n).trim(); }
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Pirámide en alambre: el vértice de la marca.
-  var cv = document.getElementById('pyramid'), ctx = cv.getContext('2d');
-  var V = [[0, -1.1, 0], [-1, 0.7, -1], [1, 0.7, -1], [1, 0.7, 1], [-1, 0.7, 1]];
-  var E = [[0,1],[0,2],[0,3],[0,4],[1,2],[2,3],[3,4],[4,1]];
-  var F = [[0,1,2],[0,2,3],[0,3,4],[0,4,1]];
-  function frame(t) {
-    var r = cv.getBoundingClientRect(), d = window.devicePixelRatio || 1;
-    if (cv.width !== Math.round(r.width * d)) { cv.width = Math.round(r.width * d); cv.height = Math.round(r.height * d); }
-    var w = cv.width, h = cv.height, s = Math.min(w, h) * 0.3;
-    ctx.clearRect(0, 0, w, h);
-    var accent = tok('--accent'), peak = tok('--peak');
-    var a = t * 0.00035 + 0.6, ca = Math.cos(a), sa = Math.sin(a), tilt = 0.32, ct = Math.cos(tilt), st = Math.sin(tilt);
-    var Q = V.map(function (v) {
-      var x = v[0] * ca - v[2] * sa, z = v[0] * sa + v[2] * ca, y = v[1];
-      var y2 = y * ct - z * st, z2 = y * st + z * ct, k = 4.5 / (4.5 + z2);
-      return { x: w / 2 + x * s * k, y: h / 2 + y2 * s * k + s * 0.05, z: z2, wx: x, wy: y2 };
-    });
-    // haz de luz desde la cima
-    var apex = Q[0];
-    var beam = ctx.createLinearGradient(0, apex.y, 0, 0);
-    beam.addColorStop(0, peak); beam.addColorStop(1, 'transparent');
-    ctx.globalAlpha = 0.22; ctx.fillStyle = beam;
-    ctx.beginPath(); ctx.moveTo(apex.x - 3 * d, apex.y); ctx.lineTo(apex.x - 28 * d, 0); ctx.lineTo(apex.x + 28 * d, 0); ctx.lineTo(apex.x + 3 * d, apex.y); ctx.fill();
-    ctx.globalAlpha = 1;
-    // sombra en el suelo
-    var floor = h / 2 + s * 0.85;
-    var sh = ctx.createRadialGradient(w / 2, floor, 0, w / 2, floor, s * 1.4);
-    sh.addColorStop(0, accent); sh.addColorStop(1, 'transparent');
-    ctx.globalAlpha = 0.18; ctx.fillStyle = sh;
-    ctx.beginPath(); ctx.ellipse(w / 2, floor, s * 1.4, s * 0.32, 0, 0, Math.PI * 2); ctx.fill(); ctx.globalAlpha = 1;
-    // caras sólidas, ordenadas de atrás hacia adelante
-    F.map(function (f) {
-      var A = Q[f[0]], B = Q[f[1]], C = Q[f[2]];
-      var nx = (B.wy - A.wy) * (C.z - A.z) - (B.z - A.z) * (C.wy - A.wy);
-      var nz = (B.wx - A.wx) * (C.wy - A.wy) - (B.wy - A.wy) * (C.wx - A.wx);
-      var len = Math.hypot(nx, nz) || 1;
-      return { f: f, z: (A.z + B.z + C.z) / 3, light: 0.5 + 0.5 * ((nx * -0.6 + nz * -0.8) / len) };
-    }).sort(function (p, q) { return q.z - p.z; }).forEach(function (o) {
-      var A = Q[o.f[0]], B = Q[o.f[1]], C = Q[o.f[2]];
-      var g = ctx.createLinearGradient(A.x, A.y, (B.x + C.x) / 2, (B.y + C.y) / 2);
-      g.addColorStop(0, peak); g.addColorStop(0.35, accent); g.addColorStop(1, tok('--surface'));
-      ctx.globalAlpha = 0.35 + 0.55 * Math.max(0, Math.min(1, o.light));
-      ctx.fillStyle = g;
-      ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(B.x, B.y); ctx.lineTo(C.x, C.y); ctx.closePath(); ctx.fill();
-      ctx.globalAlpha = 1;
-    });
-    // aristas
-    ctx.strokeStyle = accent; ctx.lineWidth = 2 * d; ctx.lineJoin = 'round';
-    E.forEach(function (e) { ctx.beginPath(); ctx.moveTo(Q[e[0]].x, Q[e[0]].y); ctx.lineTo(Q[e[1]].x, Q[e[1]].y); ctx.stroke(); });
-    // brillo en la cima
-    var glow = ctx.createRadialGradient(apex.x, apex.y, 0, apex.x, apex.y, 34 * d);
-    glow.addColorStop(0, peak); glow.addColorStop(1, 'transparent');
-    ctx.globalAlpha = 0.55; ctx.fillStyle = glow; ctx.beginPath(); ctx.arc(apex.x, apex.y, 34 * d, 0, 7); ctx.fill(); ctx.globalAlpha = 1;
-    ctx.fillStyle = peak; ctx.beginPath(); ctx.arc(apex.x, apex.y, 6.5 * d, 0, 7); ctx.fill();
-    if (!reduce) requestAnimationFrame(frame);
+  // Latido (corazón) que se une con una red de neuronas (mente) a través del vértice.
+  function ecg(p) {
+    p = p - Math.floor(p);
+    if (p < 0.30) return 0;
+    if (p < 0.36) return -0.15 * Math.sin((p - 0.30) / 0.06 * Math.PI);
+    if (p < 0.40) return 0;
+    if (p < 0.43) return 0.25 * (p - 0.40) / 0.03;
+    if (p < 0.47) return 0.25 - 1.25 * (p - 0.43) / 0.04;
+    if (p < 0.51) return -1 + 1.3 * (p - 0.47) / 0.04;
+    if (p < 0.54) return 0.3 - 0.3 * (p - 0.51) / 0.03;
+    if (p < 0.70) return 0;
+    if (p < 0.80) return -0.22 * Math.sin((p - 0.70) / 0.10 * Math.PI);
+    return 0;
   }
-  requestAnimationFrame(frame);
+  (function () {
+    var cv = document.getElementById('stage'), ctx = cv.getContext('2d');
+    var seed = 13; function R() { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; }
+    var nodes = [], links = [];
+    for (var i = 0; i < 30; i++) nodes.push({ u: 0.56 + R() * 0.42, v: 0.1 + R() * 0.8, ph: R() * 6.28 });
+    nodes.forEach(function (n, i) {
+      nodes.map(function (m, j) { return { j: j, d: Math.hypot(n.u - m.u, (n.v - m.v) * 0.4) }; })
+        .filter(function (o) { return o.j !== i; }).sort(function (a, b) { return a.d - b.d; }).slice(0, 3)
+        .forEach(function (o) { if (!links.some(function (l) { return (l[0] === o.j && l[1] === i) || (l[0] === i && l[1] === o.j); })) links.push([i, o.j]); });
+    });
+    var hubs = nodes.map(function (n, i) { return { i: i, u: n.u }; }).sort(function (a, b) { return a.u - b.u; }).slice(0, 5).map(function (o) { return o.i; });
+    var sparks = []; for (var k = 0; k < 12; k++) sparks.push({ l: Math.floor(R() * links.length), t: R(), sp: 0.004 + R() * 0.006 });
+    function frame(t) {
+      var r = cv.getBoundingClientRect(), d = window.devicePixelRatio || 1;
+      if (cv.width !== Math.round(r.width * d)) { cv.width = Math.round(r.width * d); cv.height = Math.round(r.height * d); }
+      var w = cv.width, h = cv.height, mid = h * 0.52, cx = w * 0.5;
+      var heart = tok('--heart'), mind = tok('--accent'), peak = tok('--peak');
+      ctx.clearRect(0, 0, w, h);
+      var amp = h * 0.32, phase = reduce ? 0.2 : t * 0.0006;
+      ctx.strokeStyle = heart; ctx.lineWidth = 2.4 * d; ctx.lineJoin = 'round'; ctx.shadowColor = heart; ctx.shadowBlur = 10 * d;
+      ctx.beginPath();
+      for (var x = 0; x <= cx - 34 * d; x += 2 * d) {
+        var y = mid + ecg(x / (w * 0.22) - phase) * amp;
+        x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.stroke(); ctx.shadowBlur = 0;
+      var P = nodes.map(function (n) { return [n.u * w + Math.sin(t * 0.0008 + n.ph) * 4 * d, n.v * h + Math.cos(t * 0.0007 + n.ph) * 4 * d]; });
+      ctx.strokeStyle = mind; ctx.lineWidth = 1.2 * d; ctx.globalAlpha = 0.45;
+      links.forEach(function (l) { ctx.beginPath(); ctx.moveTo(P[l[0]][0], P[l[0]][1]); ctx.lineTo(P[l[1]][0], P[l[1]][1]); ctx.stroke(); });
+      hubs.forEach(function (i) { ctx.beginPath(); ctx.moveTo(cx + 26 * d, mid); ctx.lineTo(P[i][0], P[i][1]); ctx.stroke(); });
+      ctx.globalAlpha = 1; ctx.fillStyle = mind;
+      P.forEach(function (p, i) { ctx.beginPath(); ctx.arc(p[0], p[1], Math.max(1.5, 2.2 + 1.4 * Math.sin(t * 0.002 + nodes[i].ph)) * d, 0, 7); ctx.fill(); });
+      ctx.fillStyle = peak; ctx.shadowColor = peak; ctx.shadowBlur = 12 * d;
+      sparks.forEach(function (s) {
+        if (!reduce) { s.t += s.sp; if (s.t > 1) { s.t = 0; s.l = Math.floor(Math.random() * links.length); } }
+        var a = P[links[s.l][0]], b = P[links[s.l][1]];
+        ctx.beginPath(); ctx.arc(a[0] + (b[0] - a[0]) * s.t, a[1] + (b[1] - a[1]) * s.t, 2.6 * d, 0, 7); ctx.fill();
+      });
+      ctx.shadowBlur = 0;
+      var tw = 32 * d, beat = 1 + 0.12 * Math.max(0, -ecg(cx / (w * 0.22) - phase));
+      ctx.save(); ctx.translate(cx, mid); ctx.scale(beat, beat);
+      var g = ctx.createLinearGradient(0, -tw, 0, tw * 0.8);
+      g.addColorStop(0, peak); g.addColorStop(0.45, mind);
+      ctx.fillStyle = g; ctx.shadowColor = peak; ctx.shadowBlur = 18 * d;
+      ctx.beginPath(); ctx.moveTo(0, -tw); ctx.lineTo(tw * 0.95, tw * 0.8); ctx.lineTo(-tw * 0.95, tw * 0.8); ctx.closePath(); ctx.fill();
+      ctx.shadowBlur = 0; ctx.fillStyle = tok('--bg');
+      ctx.beginPath(); ctx.moveTo(0, -tw * 0.18); ctx.lineTo(tw * 0.48, tw * 0.8); ctx.lineTo(-tw * 0.48, tw * 0.8); ctx.closePath(); ctx.fill();
+      ctx.restore();
+      if (!reduce) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  })();
 
   // Maquetas de proyectos hasta tener capturas reales.
   function rand(seed) { return function () { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; }; }
