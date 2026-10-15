@@ -204,7 +204,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 1rem; flex-wr
         <a class="btn primary" href="#contacto">Cotiza tu proyecto</a>
         <a class="btn" href="#servicios">Ver servicios</a>
       </div>
-      <canvas class="stage" id="stage" aria-label="Caracteres de código que fluyen y se convierten en un latido"></canvas>
+      <canvas class="stage" id="stage" aria-label="Una neurona hecha de código que late como un corazón"></canvas>
     </div>
     <div class="wrap legend"><span class="lm">◉ Mente · Programación</span><span class="lh">Corazón · Creatividad ♥</span></div>
   </div>
@@ -379,49 +379,89 @@ footer .wrap { display: flex; justify-content: space-between; gap: 1rem; flex-wr
   function tok(n) { return getComputedStyle(root).getPropertyValue(n).trim(); }
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Código (mente) que fluye y se convierte en un latido (corazón).
+  // Neurona hecha de código (mente) que late como un corazón.
   (function () {
     var cv = document.getElementById('stage'), ctx = cv.getContext('2d');
-    var seed = 21; function R() { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; }
-    function gs(x, m, sd) { return Math.exp(-((x - m) * (x - m)) / (2 * sd * sd)); }
-    // forma de un latido real: onda P, complejo QRS y onda T
-    function ecg(p) {
-      p = p - Math.floor(p);
-      return 0.11 * gs(p, 0.16, 0.025) - 0.1 * gs(p, 0.355, 0.009) + gs(p, 0.38, 0.011) - 0.26 * gs(p, 0.405, 0.011) + 0.24 * gs(p, 0.6, 0.042);
+    var seed = 31; function R() { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; }
+    var VW = 1000, VH = 350, SX = 400, SY = 175, paths = [];
+    // dendritas: ramas que reciben señales (izquierda)
+    function grow(x, y, ang, len, depth, d0) {
+      var pts = [], n = 8, bend = (R() - 0.5) * 0.5, dist = d0;
+      for (var k = 0; k <= n; k++) {
+        if (k) { var a = ang + bend * k / n; x += Math.cos(a) * len / n; y += Math.sin(a) * len / n; dist += len / n; }
+        pts.push({ x: x, y: y, d: dist });
+      }
+      paths.push({ kind: 'in', pts: pts });
+      if (depth > 0) [-1, 1].forEach(function (sg) { grow(x, y, ang + bend + sg * (0.35 + R() * 0.3), len * (0.62 + R() * 0.12), depth - 1, dist); });
     }
-    function smooth(a, b, x) { x = Math.min(1, Math.max(0, (x - a) / (b - a))); return x * x * (3 - 2 * x); }
+    [2.35, 2.75, 3.14, 3.55, 3.95].forEach(function (a) { grow(SX - 22 * Math.cos(Math.PI - a), SY - 22 * Math.sin(Math.PI - a) * -1, a + (R() - 0.5) * 0.15, 95 + R() * 25, 2, 22); });
+    // axón: el cable largo que envía la señal (derecha)
+    var ax = [], d = 26;
+    for (var x = SX + 26; x <= 860; x += 8) { var y = SY + Math.sin((x - SX) / 70) * 14; if (ax.length) d += Math.hypot(x - ax[ax.length - 1].x, y - ax[ax.length - 1].y); ax.push({ x: x, y: y, d: d }); }
+    paths.push({ kind: 'out', pts: ax });
+    var end = ax[ax.length - 1], axLen = end.d;
+    function term(x, y, ang, len, depth, d0) {
+      var pts = [], n = 5, dist = d0;
+      for (var k = 0; k <= n; k++) { if (k) { x += Math.cos(ang) * len / n; y += Math.sin(ang) * len / n; dist += len / n; } pts.push({ x: x, y: y, d: dist }); }
+      paths.push({ kind: 'out', pts: pts, tip: depth === 0 });
+      if (depth > 0) [-1, 1].forEach(function (sg) { term(x, y, ang + sg * (0.4 + R() * 0.2), len * 0.7, depth - 1, dist); });
+    }
+    [-0.55, 0, 0.55].forEach(function (a) { term(end.x, end.y, a, 50, 1, end.d); });
+    var maxOut = 0, maxIn = 0;
+    paths.forEach(function (pa) { pa.pts.forEach(function (q) { if (pa.kind === 'out') maxOut = Math.max(maxOut, q.d); else maxIn = Math.max(maxIn, q.d); }); });
+    // caracteres de código a lo largo de cada rama
+    var chars = '01{}<>/;=()[]&|', glyphs = [];
+    paths.forEach(function (pa) {
+      var acc = 0;
+      for (var k = 1; k < pa.pts.length; k++) {
+        var A = pa.pts[k - 1], B = pa.pts[k], L = Math.hypot(B.x - A.x, B.y - A.y);
+        for (var u = acc; u < L; u += 13) { var f = u / L; glyphs.push({ x: A.x + (B.x - A.x) * f, y: A.y + (B.y - A.y) * f, d: A.d + (B.d - A.d) * f, kind: pa.kind, c: chars[Math.floor(R() * chars.length)], ph: R() * 6.28 }); }
+        acc = (acc - L) % 13; if (acc < 0) acc += 13;
+      }
+    });
+    var ring = []; for (var k = 0; k < 18; k++) ring.push({ a: k / 18 * Math.PI * 2, c: chars[Math.floor(R() * chars.length)] });
+    function gs(x, sd) { return Math.exp(-(x * x) / (2 * sd * sd)); }
     function rgb(hex) { hex = hex.replace('#', ''); return [0, 2, 4].map(function (k) { return parseInt(hex.substr(k, 2), 16); }); }
-    var chars = 'const{}()<>=/;01[]=>&&fn', glyphs = [];
-    for (var i = 0; i < 240; i++) glyphs.push({ off: R(), lane: (R() - 0.5) * 2, sp: 0.8 + R() * 0.4, ph: R() * 6.28, c: chars[Math.floor(R() * chars.length)] });
     function frame(t) {
-      var r = cv.getBoundingClientRect(), d = window.devicePixelRatio || 1;
-      if (cv.width !== Math.round(r.width * d)) { cv.width = Math.round(r.width * d); cv.height = Math.round(r.height * d); }
-      var w = cv.width, h = cv.height, mid = h * 0.55, amp = h * 0.42, period = w * 0.3;
-      var A = rgb(tok('--accent')), B = rgb(tok('--heart'));
-      var phase = reduce ? 0.3 : t * 0.00028, flow = reduce ? 0 : t * 0.000045;
+      var r = cv.getBoundingClientRect(), dpr = window.devicePixelRatio || 1;
+      if (cv.width !== Math.round(r.width * dpr)) { cv.width = Math.round(r.width * dpr); cv.height = Math.round(r.height * dpr); }
+      var w = cv.width, h = cv.height, sc = Math.min(w / VW, h / VH), ox = (w - VW * sc) / 2, oy = (h - VH * sc) / 2;
+      var A = rgb(tok('--accent')), B = rgb(tok('--heart')), P = rgb(tok('--peak'));
+      // ciclo de un latido (lub-dub), unos 60 por minuto
+      var cyc = reduce ? 0.12 : (t / 1100) % 1;
+      var beat = gs(cyc - 0.02, 0.035) + 0.55 * gs(cyc - 0.16, 0.035);
+      var inPos = (1 - cyc) * maxIn, outPos = cyc * (maxOut + 60);
       ctx.clearRect(0, 0, w, h);
+      function X(v) { return ox + v * sc; } function Y(v) { return oy + v * sc; }
+      function sway(q) { return Math.sin(t * 0.0007 + q.x * 0.012) * 3 * Math.min(1, Math.abs(q.x - SX) / 200); }
+      // trazo fino bajo el código
+      ctx.lineWidth = 1 * dpr; ctx.strokeStyle = 'rgba(' + A.join(',') + ',0.18)';
+      paths.forEach(function (pa) { ctx.beginPath(); pa.pts.forEach(function (q, k) { var xx = X(q.x), yy = Y(q.y + sway(q)); k ? ctx.lineTo(xx, yy) : ctx.moveTo(xx, yy); }); ctx.stroke(); });
       ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
       glyphs.forEach(function (g) {
-        var u = (g.off + flow * g.sp) % 1, x = u * w, f = smooth(0.18, 0.6, u);
-        if (f >= 0.98) return;
-        var spread = h * 0.32 * Math.pow(1 - f, 1.6);
-        var drift = Math.sin(t * 0.0009 + g.ph + u * 6) * 5 * d * (1 - f);
-        var y = mid + g.lane * spread + drift - ecg(x / period - phase) * amp * f;
-        var c = A.map(function (v, k) { return Math.round(v + (B[k] - v) * f); });
-        ctx.globalAlpha = (0.25 + 0.6 * (1 - Math.abs(g.lane) * 0.6)) * (1 - f) * smooth(0, 0.08, u);
+        var e = g.kind === 'in' ? gs(g.d - inPos, 18) * (cyc > 0.05 ? 1 : 0) : gs(g.d - outPos, 22);
+        var c = A.map(function (v, k) { return Math.round(v + (B[k] - v) * e); });
+        ctx.globalAlpha = 0.45 + 0.55 * e;
         ctx.fillStyle = 'rgb(' + c.join(',') + ')';
-        ctx.font = '500 ' + Math.round((15 - 6 * f) * d) + 'px "IBM Plex Mono", ui-monospace, monospace';
-        ctx.fillText(g.c, x, y);
+        ctx.font = '500 ' + Math.round((11 + 5 * e) * sc * dpr / Math.max(sc, 0.001) * Math.min(1.2, Math.max(0.75, sc))) + 'px "IBM Plex Mono", ui-monospace, monospace';
+        ctx.fillText(g.c, X(g.x), Y(g.y + sway(g)));
       });
-      // la línea del latido nace donde el código se ordena
-      var x0 = w * 0.42, heart = 'rgb(' + B.join(',') + ')';
-      var grad = ctx.createLinearGradient(x0, 0, w, 0);
-      grad.addColorStop(0, 'rgba(' + B.join(',') + ',0)'); grad.addColorStop(0.25, heart); grad.addColorStop(1, heart);
-      ctx.globalAlpha = 1; ctx.strokeStyle = grad; ctx.lineWidth = 2.4 * d; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
-      ctx.shadowColor = heart; ctx.shadowBlur = 12 * d;
-      ctx.beginPath();
-      for (var x = x0; x <= w; x += 1.5 * d) { var y = mid - ecg(x / period - phase) * amp; x === x0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y); }
-      ctx.stroke(); ctx.shadowBlur = 0;
+      ctx.globalAlpha = 1;
+      // cuerpo de la neurona: late como un corazón
+      var cx = X(SX), cy = Y(SY), rad = 22 * sc * (1 + 0.18 * beat);
+      var glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, rad * 3.2);
+      glow.addColorStop(0, 'rgba(' + B.join(',') + ',' + (0.25 + 0.45 * beat).toFixed(3) + ')'); glow.addColorStop(1, 'rgba(' + B.join(',') + ',0)');
+      ctx.fillStyle = glow; ctx.beginPath(); ctx.arc(cx, cy, rad * 3.2, 0, 7); ctx.fill();
+      var core = A.map(function (v, k) { return Math.round(v + (B[k] - v) * Math.min(1, 0.35 + beat)); });
+      ctx.fillStyle = 'rgb(' + core.join(',') + ')'; ctx.shadowColor = 'rgb(' + B.join(',') + ')'; ctx.shadowBlur = 20 * dpr * (0.4 + beat);
+      ctx.beginPath(); ctx.arc(cx, cy, rad, 0, 7); ctx.fill(); ctx.shadowBlur = 0;
+      ctx.fillStyle = 'rgb(' + P.join(',') + ')'; ctx.beginPath(); ctx.arc(cx, cy, rad * 0.32, 0, 7); ctx.fill();
+      ctx.font = '500 ' + Math.round(12 * dpr * Math.min(1.2, Math.max(0.75, sc))) + 'px "IBM Plex Mono", ui-monospace, monospace';
+      ring.forEach(function (o) { var rr = rad + 12 * sc * dpr / dpr; ctx.globalAlpha = 0.5 + 0.5 * beat; ctx.fillStyle = 'rgb(' + core.join(',') + ')'; ctx.fillText(o.c, cx + Math.cos(o.a + t * 0.0002) * rr, cy + Math.sin(o.a + t * 0.0002) * rr); });
+      ctx.globalAlpha = 1;
+      // chispas en las puntas cuando llega la señal
+      paths.forEach(function (pa) { if (!pa.tip) return; var q = pa.pts[pa.pts.length - 1], e = gs(q.d - outPos, 20);
+        if (e > 0.05) { ctx.globalAlpha = e; ctx.fillStyle = 'rgb(' + P.join(',') + ')'; ctx.shadowColor = ctx.fillStyle; ctx.shadowBlur = 14 * dpr; ctx.beginPath(); ctx.arc(X(q.x), Y(q.y + sway(q)), 4 * dpr, 0, 7); ctx.fill(); ctx.shadowBlur = 0; ctx.globalAlpha = 1; } });
       if (!reduce) requestAnimationFrame(frame);
     }
     requestAnimationFrame(frame);
