@@ -1,4 +1,4 @@
-# Grupo Vértice
+# Pabel López · Portafolio
 
 Agencia digital en Guatemala, fundada por Pabel López: desarrollo web, diseño gráfico, marketing, fotografía y video.
 
