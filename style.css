@@ -121,6 +121,11 @@ body.ingles .idioma .en { color: var(--texto); }
 .contacto p { margin: 20px auto 36px; font-size: 18px; }
 .contacto-botones { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 
+.redes { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
+.redes a { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: var(--texto-suave); border: 1px solid var(--linea); border-radius: 999px; padding: 8px 14px; transition: color .2s, border-color .2s; }
+.redes a:hover { color: var(--texto); border-color: var(--texto-suave); }
+.redes svg { width: 16px; height: 16px; fill: currentColor; }
+.pie .redes { margin: 0 0 20px; }
 .pie { text-align: center; padding: 90px 24px 60px; color: var(--texto-suave); font-size: 14px; }
 .pie nav { display: flex; gap: 26px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
 .pie nav a { color: var(--texto); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
