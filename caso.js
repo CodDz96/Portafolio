@@ -129,7 +129,7 @@ function pintar(idioma) {
       <div class="d-velo"></div>
       <div class="d-columnas"><span></span><span></span><span></span><span></span></div>
       <div class="d-vidrio"></div>
-      <a class="d-volver" href="index.html#proyectos">${en ? '← Back to projects' : '← Volver a proyectos'}</a>
+      <a class="d-volver" href="/#proyectos">${en ? '← Back to projects' : '← Volver a proyectos'}</a>
       <div class="d-marca"><b>${t.cliente}</b><small>${en ? 'Case study' : 'Caso de estudio'}</small></div>
       <div class="d-titulo">
         <h1>${t.titulo}</h1>
@@ -217,7 +217,7 @@ function pintar(idioma) {
       <div class="d-pies">
         <span>${en ? 'Photography, video, design<br>and websites' : 'Fotografía, video, diseño<br>y páginas web'}</span>
         <span>${en ? 'Tell me about your project<br>and I’ll reply within 24 hours' : 'Cuéntame de tu proyecto<br>y te respondo en 24 horas'}</span>
-        <a class="pildora pildora-llena" href="index.html#contacto">${en ? 'Work with me' : 'Trabajemos'}</a>
+        <a class="pildora pildora-llena" href="/#contacto">${en ? 'Work with me' : 'Trabajemos'}</a>
       </div>
     </section>`;
 
