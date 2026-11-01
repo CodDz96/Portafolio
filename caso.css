@@ -61,7 +61,8 @@
 .d-rejilla h3 { font-size: 24px; margin: 30px 0 10px; }
 .d-rejilla p { font-size: 14px; }
 .d-figura { margin: 0; border-top: 1px solid var(--raya); position: relative; }
-.d-figura img { width: 100%; display: block; }
+.d-figura { background: #111; }
+.d-figura img { width: auto; max-width: 100%; display: block; margin: 0 auto; }
 .d-figura figcaption { position: absolute; left: 28px; bottom: 22px; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; background: rgba(0,0,0,.7); padding: 8px 12px; }
 
 /* 4. Misión con movimiento */
