@@ -52,7 +52,7 @@ const casos = {
   },
   love: {
     mockup: 'love.jpg',
-    galeria: [], // fotos pequeñas quitadas hasta tener capturas grandes
+    galeria: ['love-g1.jpg', 'love-g2.jpg', 'love-g3.jpg', 'love-g4.jpg'],
     palabra: ['LO', 'VE'], relleno: 'love-1.jpg', fondo: 'love-1.jpg',
     animado: { fondo: '#1c2a4a', color: '#d9b26a', etiquetaFondo: '#d9b26a', etiquetaColor: '#1c2a4a' },
     es: {
@@ -61,7 +61,7 @@ const casos = {
       sobre: 'Love Guatemala es un centro educativo que forma jóvenes en carreras técnicas como panadería y computación, con acompañamiento y una comunidad que cree en ellos.',
       necesidad: 'Necesitaban un sitio que mostrara el lugar real, explicara por qué estudiar ahí y llevara a las familias a inscribirse en 2027 sin complicaciones.',
       publico: 'Jóvenes que buscan una carrera técnica y sus familias, que quieren saber cómo es el lugar y cómo inscribirse.',
-      galeriaPies: ['Foto aérea del centro', '¿Por qué estudiar con nosotros?', 'Pie de página con logos y redes', 'Estudiantes y maestro'],
+      galeriaPies: ['Bachillerato con retrato de estudiante', 'Video aéreo: Excelencia, Disciplina, Constancia', 'Fotografía de cocina y repostería', 'Estudiantes de la promoción'],
       titulo: 'Love Guatemala: diseño y desarrollo del sitio web',
       herramientas: 'Squarespace · Código (HTML y CSS) · Photoshop · Lightroom · Premiere Pro',
       habilidades: 'Diseño web · Fotografía · Video',
@@ -82,7 +82,7 @@ const casos = {
       sobre: 'Love Guatemala is a school that trains young people in technical programs such as baking and computing, with mentoring and a community that believes in them.',
       necesidad: 'They needed a site that shows the real place, explains why to study there and leads families to enroll for 2027 without hassle.',
       publico: 'Young people looking for a technical career and their families, who want to see the place and know how to enroll.',
-      galeriaPies: ['Aerial photo of the campus', 'Why study with us?', 'Footer with logos and social links', 'Students and teacher'],
+      galeriaPies: ['High school section with a student portrait', 'Aerial video: Excellence, Discipline, Perseverance', 'Kitchen and pastry photography', 'Students of the class'],
       titulo: 'Love Guatemala: website design and development',
       herramientas: 'Squarespace · Code (HTML and CSS) · Photoshop · Lightroom · Premiere Pro',
       habilidades: 'Web design · Photography · Video',
