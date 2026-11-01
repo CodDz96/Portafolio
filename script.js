@@ -15,6 +15,26 @@ let guardado = null;
 try { guardado = localStorage.getItem('idioma'); } catch (e) {}
 if ((guardado || (navigator.language.startsWith('es') ? 'es' : 'en')) === 'en') cambiarIdioma('en');
 
+// ===== Palabra que cambia en la portada =====
+const rota = document.getElementById('rota');
+if (rota) {
+  const palabras = { es: ['páginas web', 'fotografías', 'videos', 'diseños'], en: ['websites', 'photos', 'videos', 'designs'] };
+  let n = 0;
+  const idiomaActual = () => (document.documentElement.lang === 'en' ? 'en' : 'es');
+  rota.textContent = palabras[idiomaActual()][0];
+  document.getElementById('idioma').addEventListener('click', () => { rota.textContent = palabras[idiomaActual()][n]; });
+  setInterval(() => {
+    rota.classList.add('sale');
+    setTimeout(() => {
+      n = (n + 1) % palabras.es.length;
+      rota.textContent = palabras[idiomaActual()][n];
+      rota.classList.remove('sale');
+      rota.classList.add('entra');
+      setTimeout(() => rota.classList.remove('entra'), 450);
+    }, 350);
+  }, 2200);
+}
+
 // ===== Aparecer al bajar =====
 const observador = new IntersectionObserver((entradas) => {
   entradas.forEach((e) => {
