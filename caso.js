@@ -1,3 +1,4 @@
+const rutas = { esperanza: 'esperanza-handmade', love: 'love-guatemala' };
 // ===== Casos de estudio =====
 // Cada proyecto tiene su texto en español (es) y en inglés (en).
 // Para agregar un proyecto nuevo, copia uno de estos bloques y cambia los datos.
@@ -105,7 +106,7 @@ const titulos = {
   en: { proyecto: 'The project', sobre: 'About the client', necesidad: 'What they needed', publico: 'Who it’s for', proceso: 'My process', galeria: 'Gallery', pasos: [['Listen', 'Understand the business, its audience and its goals.'], ['Design', 'Define the structure, the style and every screen.'], ['Build', 'Code the site so it works on phone and computer.'], ['Deliver', 'Check every detail and publish the site.']], contexto: 'Background', reto: 'The challenge', solucion: 'The approach', destacado: 'Key highlights', resultado: 'Outcome' }
 };
 
-const id = new URLSearchParams(location.search).get('p');
+const id = window.CASO || new URLSearchParams(location.search).get('p');
 const caso = casos[id] || casos.esperanza;
 let escribiendo = null;
 
@@ -125,7 +126,7 @@ function pintar(idioma) {
   document.getElementById('c-diapos').innerHTML = `
     <!-- 1. Portada del proyecto -->
     <section class="diapo d-portada">
-      <img class="d-fondo" src="Imagenes/${caso.mockup}" alt="">
+      <img class="d-fondo" src="/Imagenes/${caso.mockup}" alt="">
       <div class="d-velo"></div>
       <div class="d-columnas"><span></span><span></span><span></span><span></span></div>
       <div class="d-vidrio"></div>
@@ -138,20 +139,20 @@ function pintar(idioma) {
       <div class="d-pies">
         <span>${en ? 'Tools' : 'Herramientas'}<br>${t.herramientas}</span>
         <span>${en ? 'Skills' : 'Habilidades'}<br>${t.habilidades}</span>
-        <span class="d-autor"><img src="Imagenes/avatar.jpg" alt="">Pabel López</span>
+        <span class="d-autor"><img src="/Imagenes/avatar.jpg" alt="">Pabel López</span>
       </div>
     </section>
 
     <!-- 2. Contexto y reto: palabra gigante con foto -->
     <section class="diapo d-dividida aparecer">
-      <div class="d-gigante" style="background-image:url(Imagenes/${caso.relleno})">${caso.palabra.map((p) => `<span>${p}</span>`).join('')}</div>
+      <div class="d-gigante" style="background-image:url(/Imagenes/${caso.relleno})">${caso.palabra.map((p) => `<span>${p}</span>`).join('')}</div>
       <div class="d-clara">
         <div class="d-celda d-celda-ancha">
           <h2>${h.contexto}</h2>
           <p>${t.contexto}</p>
         </div>
         ${t.reto.map((r, i) => `<div class="d-celda"><b>${num(i)}</b><p>${r}</p></div>`).join('')}
-        <div class="d-celda d-celda-foto"><img src="Imagenes/${f1[0]}" alt=""></div>
+        <div class="d-celda d-celda-foto"><img src="/Imagenes/${f1[0]}" alt=""></div>
       </div>
     </section>
 
@@ -175,13 +176,13 @@ function pintar(idioma) {
       <div class="d-rejilla">
         ${t.solucion.map(([titulo, texto], i) => `<div class="d-celda"><b>${num(i)}</b><h3>${titulo}</h3><p>${texto}</p></div>`).join('')}
       </div>
-      <figure class="d-figura"><img src="Imagenes/${f2[0]}" alt="${f2[1]}"><figcaption>${f2[1]}</figcaption></figure>
+      <figure class="d-figura"><img src="/Imagenes/${f2[0]}" alt="${f2[1]}"><figcaption>${f2[1]}</figcaption></figure>
     </section>
 
     <!-- 4. Misión con movimiento -->
     <section class="diapo d-mision aparecer" style="--m-fondo:${a.fondo};--m-color:${a.color}">
       <div class="d-fantasma">${t.cliente}</div>
-      <img class="d-fondo" src="Imagenes/${caso.fondo}" alt="">
+      <img class="d-fondo" src="/Imagenes/${caso.fondo}" alt="">
       <div class="d-mision-velo"></div>
       <div class="d-mision-texto">
         <span class="bloque-etiqueta" style="background:${a.etiquetaFondo};color:${a.etiquetaColor}">${t.etiqueta}</span>
@@ -197,13 +198,13 @@ function pintar(idioma) {
     ${caso.galeria.length ? `<section class="diapo d-galeria aparecer">
       <div class="d-cabeza"><h2>${h.galeria}</h2><span class="d-corchete">[ ${caso.galeria.length} ${en ? 'images' : 'imágenes'} ]</span></div>
       <div class="d-mosaico">
-        ${caso.galeria.map((g, i) => `<figure class="m${i + 1}"><img src="Imagenes/${g}" alt="${t.galeriaPies[i]}"><figcaption><b>${num(i)}</b> ${t.galeriaPies[i]}</figcaption></figure>`).join('')}
+        ${caso.galeria.map((g, i) => `<figure class="m${i + 1}"><img src="/Imagenes/${g}" alt="${t.galeriaPies[i]}"><figcaption><b>${num(i)}</b> ${t.galeriaPies[i]}</figcaption></figure>`).join('')}
       </div>
     </section>` : ''}
 
     <!-- 5. Detalle -->
     <section class="diapo d-detalle aparecer">
-      <figure><img src="Imagenes/${f3[0]}" alt="${f3[1]}"></figure>
+      <figure><img src="/Imagenes/${f3[0]}" alt="${f3[1]}"></figure>
       <div class="d-clara d-una">
         <div class="d-celda"><span class="d-corchete d-oscuro">[ ${en ? 'Detail' : 'Detalle'} ]</span><h2>${f3[1]}</h2></div>
         <div class="d-celda"><h2>${h.resultado}</h2><p>${t.resultado}</p></div>
@@ -223,7 +224,7 @@ function pintar(idioma) {
 
   document.getElementById('c-mas').innerHTML = Object.entries(casos)
     .filter(([clave]) => casos[clave] !== caso)
-    .map(([clave, c]) => `<a href="caso.html?p=${clave}"><div class="mas-foto"><img src="Imagenes/${c.mockup}" alt=""></div><span>${c[idioma].cliente}</span><small>${c[idioma].habilidades}</small></a>`)
+    .map(([clave, c]) => `<a href="/${rutas[clave]}/"><div class="mas-foto"><img src="/Imagenes/${c.mockup}" alt=""></div><span>${c[idioma].cliente}</span><small>${c[idioma].habilidades}</small></a>`)
     .join('');
 
   escribirFrase(t.frase);
