@@ -1,0 +1,169 @@
+/* ===== Página de proyecto estilo diapositivas ===== */
+.pagina-caso { --raya: rgba(255, 255, 255, 0.14); --clara: #ececec; --negro: #0b0b0b; }
+
+.diapos { max-width: 1320px; margin: 0 auto; padding: 20px 24px 0; display: grid; gap: 24px; }
+.diapo { position: relative; overflow: hidden; background: var(--negro); border: 1px solid var(--raya); }
+.diapo h1, .diapo h2, .diapo h3 { font-weight: 500; letter-spacing: -0.035em; line-height: 0.98; }
+.d-corchete { font-size: 15px; color: var(--texto-suave); letter-spacing: 0.01em; }
+.d-oscuro { color: #6b6b6b; }
+
+/* Pies de diapositiva en columnas */
+.d-pies { position: absolute; left: 0; right: 0; bottom: 0; z-index: 4; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--raya); }
+.d-pies > * { padding: 22px 28px; font-size: 14px; line-height: 1.35; color: #d6d6d6; border-left: 1px solid var(--raya); }
+.d-pies > *:first-child { border-left: 0; }
+.d-pies b { color: #fff; font-weight: 600; }
+
+/* 1. Portada */
+.d-portada { aspect-ratio: 16 / 8.6; }
+.d-fondo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(0.75) contrast(1.05); }
+.d-velo { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.65), rgba(0,0,0,.25) 45%, rgba(0,0,0,.75)), linear-gradient(0deg, rgba(0,0,0,.85), transparent 45%); }
+.d-columnas { position: absolute; inset: 0; z-index: 2; display: grid; grid-template-columns: repeat(4, 1fr); pointer-events: none; }
+.d-columnas span { border-left: 1px solid var(--raya); }
+.d-columnas span:first-child { border-left: 0; }
+.d-vidrio { position: absolute; z-index: 2; left: 3%; top: 0; width: 19%; height: 78%; background: rgba(120,120,120,.28); backdrop-filter: blur(14px); clip-path: polygon(0 0, 100% 0, 100% 100%, 0 70%); }
+.d-volver { position: absolute; z-index: 5; left: 28px; top: 26px; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: #cfcfcf; }
+.d-volver:hover { color: var(--naranja); }
+.d-marca { position: absolute; z-index: 5; left: 28px; top: 70px; display: grid; gap: 2px; }
+.d-marca b { font-size: 15px; letter-spacing: .14em; text-transform: uppercase; }
+.d-marca small { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--texto-suave); }
+.d-titulo { position: absolute; z-index: 5; right: 5%; top: 12%; width: 52%; }
+.d-titulo h1 { font-size: clamp(34px, 4.6vw, 66px); margin-bottom: 18px; }
+.d-portada .d-pies { grid-template-columns: repeat(4, 1fr); }
+.d-portada .d-pies > *:first-child { grid-column: 2; border-left: 1px solid var(--raya); }
+.d-autor { display: flex; align-items: center; gap: 12px; }
+.d-autor img { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; }
+
+/* 2. Dividida: palabra gigante + panel claro */
+.d-dividida { display: grid; grid-template-columns: 1fr 1fr; }
+.d-gigante {
+  display: flex; flex-direction: column; justify-content: center; padding: 30px 28px;
+  background-size: cover; background-position: center;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  font-weight: 800; font-size: clamp(110px, 19vw, 300px); line-height: 0.8; letter-spacing: -0.06em;
+}
+.d-clara { background: var(--clara); color: #111; display: grid; grid-template-columns: 1fr 1fr; padding: 16px; gap: 0; }
+.d-clara .d-celda { padding: 26px; border: 1px solid #cfcfcf; margin: -0.5px; }
+.d-clara .d-celda-ancha { grid-column: 1 / -1; padding-bottom: 40px; }
+.d-clara h2 { font-size: clamp(30px, 3.2vw, 46px); color: #111; margin-bottom: 18px; }
+.d-clara p { color: #3d3d3d; font-size: 15px; line-height: 1.5; }
+.d-clara b { display: block; font-size: 40px; font-weight: 400; color: #8a8a8a; letter-spacing: -0.03em; margin-bottom: 12px; }
+.d-celda-foto { padding: 0 !important; overflow: hidden; background: #111; }
+.d-celda-foto img { width: 100%; height: 100%; object-fit: cover; clip-path: polygon(30% 0, 100% 0, 100% 100%, 0 100%); }
+
+/* 3. Oscura con rejilla */
+.d-oscura { padding: 0; }
+.d-cabeza { display: flex; justify-content: space-between; align-items: end; gap: 20px; padding: 44px 28px 34px; border-bottom: 1px solid var(--raya); }
+.d-cabeza h2 { font-size: clamp(38px, 5vw, 72px); }
+.d-rejilla { display: grid; grid-template-columns: repeat(4, 1fr); }
+.d-rejilla .d-celda { padding: 28px; border-left: 1px solid var(--raya); min-height: 230px; display: flex; flex-direction: column; }
+.d-rejilla .d-celda:first-child { border-left: 0; }
+.d-rejilla b { font-size: 14px; color: var(--naranja); font-weight: 600; margin-bottom: auto; }
+.d-rejilla h3 { font-size: 24px; margin: 30px 0 10px; }
+.d-rejilla p { font-size: 14px; }
+.d-figura { margin: 0; border-top: 1px solid var(--raya); position: relative; }
+.d-figura img { width: 100%; display: block; }
+.d-figura figcaption { position: absolute; left: 28px; bottom: 22px; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; background: rgba(0,0,0,.7); padding: 8px 12px; }
+
+/* 4. Misión con movimiento */
+.d-mision { aspect-ratio: 16 / 8; background: #050505; }
+.d-mision .d-fondo { filter: grayscale(1) brightness(.35); transform: scale(1.1); animation: deriva 20s ease-in-out infinite alternate; }
+@keyframes deriva { to { transform: scale(1.18) translateX(-2%); } }
+.d-mision-velo { position: absolute; inset: 0; background: radial-gradient(circle at 70% 60%, rgba(255,90,31,.35), transparent 50%), linear-gradient(0deg, #050505 5%, transparent 60%); }
+.d-fantasma { position: absolute; z-index: 3; left: 0; right: 0; top: -0.12em; text-align: center; font-size: clamp(70px, 12vw, 180px); font-weight: 300; letter-spacing: -0.04em; color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,.35); white-space: nowrap; }
+.d-mision-texto { position: absolute; z-index: 4; left: 28%; right: 8%; top: 36%; }
+.d-mision .bloque-frase { color: #fff; font-size: clamp(30px, 4.4vw, 62px); }
+.d-mision .bloque-etiqueta { display: inline-block; }
+
+/* 5. Detalle */
+.d-detalle { display: grid; grid-template-columns: 1.3fr 1fr; }
+.d-detalle figure { margin: 0; background: #111; display: flex; align-items: center; }
+.d-detalle figure img { width: 100%; height: 100%; object-fit: cover; }
+.d-una { grid-template-columns: 1fr; }
+
+/* 6. Cierre */
+.d-cierre { min-height: 560px; }
+.d-gigante-fino { font-size: clamp(80px, 13.5vw, 190px); font-weight: 200; letter-spacing: -0.05em; line-height: 1; color: rgba(255,255,255,.22); padding: 10px 20px 0; white-space: nowrap; border-bottom: 1px solid var(--raya); }
+.d-cierre h2 { font-size: clamp(36px, 5vw, 68px); position: relative; z-index: 2; margin: 60px 0 0 25%; }
+.d-cierre .d-pies { grid-template-columns: repeat(4, 1fr); align-items: center; }
+.d-cierre .d-pies > *:first-child { grid-column: 2; border-left: 1px solid var(--raya); }
+.d-cierre .pildora { justify-self: start; margin-left: 28px; border-left: 1px solid var(--texto); }
+
+/* Más proyectos */
+.caso-final { max-width: 1080px; margin: 0 auto; padding: 100px 24px 0; }
+.mas-proyectos h2 { font-size: 40px; font-weight: 400; margin-bottom: 28px; }
+.mas-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+.mas-grid .mas-foto { border-radius: 14px; overflow: hidden; aspect-ratio: 16 / 10; }
+.mas-grid img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
+.mas-grid a:hover img { transform: scale(1.05); }
+.mas-grid span { display: block; font-size: 19px; margin-top: 12px; }
+.mas-grid small { color: var(--texto-suave); font-size: 13px; text-transform: uppercase; letter-spacing: 1px; }
+
+/* Cursor de la frase */
+.bloque-etiqueta { font-size: 13px; padding: 6px 12px; border-radius: 4px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 20px; }
+.bloque-frase { font-weight: 500; letter-spacing: -0.03em; line-height: 1.05; min-height: 2.2em; }
+.cursor { display: inline-block; width: 0.07em; height: 0.85em; margin-left: 4px; vertical-align: -0.06em; background: var(--naranja); animation: parpadeo .8s steps(1) infinite; }
+@keyframes parpadeo { 50% { opacity: 0; } }
+
+@media (max-width: 900px) {
+  .diapos { padding: 12px 12px 0; gap: 14px; }
+  .d-pies { position: relative; grid-template-columns: 1fr 1fr !important; }
+  .d-pies > * { padding: 16px; font-size: 13px; border-top: 1px solid var(--raya); }
+  .d-portada .d-pies > *:first-child, .d-cierre .d-pies > *:first-child { grid-column: auto; border-left: 0; }
+  .d-portada, .d-mision { aspect-ratio: auto; display: flex; flex-direction: column; justify-content: flex-end; min-height: 640px; }
+  .d-columnas { grid-template-columns: repeat(2, 1fr); }
+  .d-columnas span:nth-child(n+3) { display: none; }
+  .d-vidrio { width: 40%; height: 50%; }
+  .d-titulo { position: relative; right: auto; top: auto; width: auto; padding: 150px 16px 30px; }
+  .d-dividida, .d-detalle { grid-template-columns: 1fr; }
+  .d-gigante { font-size: 34vw; padding: 24px 16px; }
+  .d-clara { padding: 10px; }
+  .d-clara .d-celda { padding: 18px; }
+  .d-cabeza { flex-direction: column; align-items: start; padding: 30px 16px 24px; }
+  .d-rejilla { grid-template-columns: 1fr 1fr; }
+  .d-rejilla .d-celda { min-height: 0; padding: 20px 16px; border-top: 1px solid var(--raya); }
+  .d-rejilla .d-celda:nth-child(odd) { border-left: 0; }
+  .d-mision-texto { position: relative; left: auto; right: auto; top: auto; padding: 160px 16px 40px; }
+  .d-cierre { min-height: 0; }
+  .d-cierre h2 { margin: 40px 16px 40px; }
+  .d-cierre .pildora { margin: 16px; }
+  .caso-final { padding: 60px 16px 0; }
+}
+.d-cierre .d-pies > .pildora { color: var(--fondo); padding: 16px 26px; border: 1px solid var(--texto); }
+.d-cierre .d-pies > .pildora:hover { color: #fff; }
+.d-gigante { filter: saturate(1.2) brightness(1.1); }
+.d-portada .d-fondo { filter: grayscale(0.7) brightness(0.55); }
+.d-velo { background: linear-gradient(90deg, rgba(0,0,0,.6), rgba(0,0,0,.35) 40%, rgba(0,0,0,.88) 75%), linear-gradient(0deg, rgba(0,0,0,.85), transparent 45%); }
+.d-mision .d-fondo { filter: grayscale(1) brightness(.3) blur(3px); }
+
+/* ===== El proyecto (más contexto) ===== */
+.d-tres { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--raya); }
+.d-tres .d-celda { padding: 32px 28px 40px; border-left: 1px solid var(--raya); }
+.d-tres .d-celda:first-child { border-left: 0; }
+.d-tres b { display: block; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--naranja); margin-bottom: 16px; font-weight: 600; }
+.d-tres p { font-size: 17px; line-height: 1.6; color: #d0d0d0; }
+.d-proceso { display: grid; grid-template-columns: 1.1fr repeat(4, 1fr); background: var(--clara); color: #111; }
+.d-proceso .d-celda { padding: 28px; border-left: 1px solid #cfcfcf; }
+.d-proceso .d-celda:first-child { border-left: 0; }
+.d-proceso h3 { font-size: 22px; color: #111; margin: 6px 0 10px; }
+.d-proceso-titulo h3 { font-size: clamp(28px, 2.6vw, 38px); }
+.d-proceso b { font-size: 34px; font-weight: 400; color: #8a8a8a; letter-spacing: -0.03em; }
+.d-proceso p { font-size: 14px; color: #444; }
+
+/* ===== Galería en mosaico ===== */
+.d-mosaico { display: grid; grid-template-columns: 1fr 1.4fr 1fr; grid-template-rows: 300px 300px; }
+.d-mosaico figure { position: relative; margin: 0; overflow: hidden; border-left: 1px solid var(--raya); border-top: 1px solid var(--raya); background: #111; }
+.d-mosaico .m1 { grid-row: 1 / 3; border-left: 0; }
+.d-mosaico .m4 { grid-column: 2 / 4; }
+.d-mosaico img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s cubic-bezier(.2,.8,.2,1); }
+.d-mosaico figure:hover img { transform: scale(1.06); }
+.d-mosaico figcaption { position: absolute; left: 0; bottom: 0; padding: 10px 16px; background: rgba(0,0,0,.75); font-size: 13px; color: #ddd; }
+.d-mosaico figcaption b { color: var(--naranja); margin-right: 6px; }
+
+@media (max-width: 900px) {
+  .d-tres, .d-proceso { grid-template-columns: 1fr; }
+  .d-tres .d-celda, .d-proceso .d-celda { border-left: 0; border-top: 1px solid var(--raya); padding: 22px 16px; }
+  .d-proceso .d-celda { border-top-color: #cfcfcf; }
+  .d-mosaico { grid-template-columns: 1fr 1fr; grid-template-rows: 340px 180px 200px; }
+  .d-mosaico .m1 { grid-row: auto; grid-column: 1 / 3; }
+  .d-mosaico .m4 { grid-column: 1 / 3; }
+}
