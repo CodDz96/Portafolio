@@ -130,7 +130,8 @@ body.ingles .idioma .en { color: var(--texto); }
   .pildora { padding: 14px 20px; font-size: 13px; }
   .contenedor { padding: 0 16px; }
   .portada { padding: 60px 0 40px; }
-  .portada-foto { aspect-ratio: 4 / 5; }
+  .portada-foto { aspect-ratio: 1 / 1; }
+  .portada-foto img { object-position: 52% 30%; }
   .linea { margin: 70px 0; }
   .proyectos-grid, .sobre { grid-template-columns: 1fr; gap: 36px; }
   .servicio { grid-template-columns: 44px 1fr 30px; }
