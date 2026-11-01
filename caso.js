@@ -4,7 +4,7 @@
 const casos = {
   esperanza: {
     mockup: 'esperanza.jpg',
-    galeria: [], // fotos pequeñas quitadas hasta tener capturas grandes
+    galeria: ['esperanza-g1.jpg', 'esperanza-g2.jpg', 'esperanza-g3.jpg', 'esperanza-g4.jpg'],
     palabra: ['ESPE', 'RAN', 'ZA'], relleno: 'esperanza-1.jpg', fondo: 'esperanza-2.jpg',
     animado: { fondo: '#f4efe9', color: '#3b2216', etiquetaFondo: '#8a4b2a', etiquetaColor: '#fff' },
     es: {
@@ -13,7 +13,7 @@ const casos = {
       sobre: 'Esperanza Handmade crea piezas de cuero genuino hechas a mano: bolsas, carteras, billeteras y accesorios. Cada pieza tiene marcas y tonos únicos, así que no hay dos iguales.',
       necesidad: 'Necesitaban vender en línea sin perder esa sensación de taller. La página tenía que transmitir calidad y confianza, y al mismo tiempo ser fácil de usar para comprar.',
       publico: 'Personas que buscan un regalo especial o una pieza que dure años, y que valoran lo hecho a mano.',
-      galeriaPies: ['Foto de estilo de vida', 'Colección de regalos para él', 'Productos recomendados', 'Página de catálogo'],
+      galeriaPies: ['Catálogo con mi foto de modelo', 'Página de producto: Claudia Shoulder Bag', 'Catálogo de bolsas', 'Colección de regalos para él'],
       titulo: 'Esperanza Handmade: diseño y desarrollo de tienda en línea',
       herramientas: 'Squarespace · Código (HTML y CSS) · Photoshop · Lightroom',
       habilidades: 'Tienda en línea · Código a la medida · Fotografía de producto y modelo',
@@ -25,7 +25,7 @@ const casos = {
       etiqueta: 'Hecho a mano',
       frase: 'Cada pieza está hecha a mano con cuero genuino.',
       pieAnimado: 'Animación de texto que se escribe sola',
-      figuras: [['esperanza-1.jpg', 'Catálogo con foto de estilo de vida'], ['esperanza-2.jpg', 'Página de producto con galería'], ['esperanza.jpg', 'Vista general de la tienda']],
+      figuras: [['esperanza-1.jpg', 'Catálogo con foto de estilo de vida'], ['esperanza-producto.jpg', 'Página de producto con galería y selector de color'], ['esperanza.jpg', 'Vista general de la tienda']],
       resultado: 'Una tienda clara y elegante, donde el producto es el centro y comprar es fácil desde el celular o la computadora.'
     },
     en: {
@@ -34,7 +34,7 @@ const casos = {
       sobre: 'Esperanza Handmade makes genuine leather pieces by hand: bags, purses, wallets and accessories. Every piece has its own marks and tones, so no two are the same.',
       necesidad: 'They needed to sell online without losing that workshop feel. The site had to show quality and build trust, while staying easy to shop.',
       publico: 'People looking for a special gift or a piece that lasts for years, who value handmade work.',
-      galeriaPies: ['Lifestyle photo', 'Gifts for him collection', 'Recommended products', 'Catalog page'],
+      galeriaPies: ['Catalog with my model photo', 'Product page: Claudia Shoulder Bag', 'Bag catalog', 'Gifts for him collection'],
       titulo: 'Esperanza Handmade: online store design and development',
       herramientas: 'Squarespace · Code (HTML and CSS) · Photoshop · Lightroom',
       habilidades: 'Online store · Custom code · Product and model photography',
@@ -46,7 +46,7 @@ const casos = {
       etiqueta: 'Handmade',
       frase: 'Each piece is handcrafted from genuine leather.',
       pieAnimado: 'Self-typing text animation',
-      figuras: [['esperanza-1.jpg', 'Catalog with a lifestyle photo'], ['esperanza-2.jpg', 'Product page with gallery'], ['esperanza.jpg', 'Store overview']],
+      figuras: [['esperanza-1.jpg', 'Catalog with a lifestyle photo'], ['esperanza-producto.jpg', 'Product page with gallery and color picker'], ['esperanza.jpg', 'Store overview']],
       resultado: 'A clear, elegant store where the product is the focus and buying is easy on phone or computer.'
     }
   },
