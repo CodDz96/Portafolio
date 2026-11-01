@@ -1,492 +1,147 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Grupo Vértice</title>
-<meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Grupo Vértice: mente que construye, corazón que inspira. Agencia digital en Guatemala. Desarrollo web, diseño gráfico, marketing, fotografía y video.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<style>
-/* Layout: plano técnico con retícula fina. Concepto mente y corazón: un latido (lo creativo) y una red de neuronas (el código) unidos por el vértice. Oscuro por defecto. */
-:root {
-  --bg: #0c1118;
-  --surface: #121a24;
-  --raise: #182230;
-  --ink: #e9eef5;
-  --muted: #8d9aab;
-  --line: #223042;
-  --accent: #5b8cff;
-  --accent-ink: #0c1118;
-  --peak: #ffb547;
-  --heart: #ff5d73;
-  --grid: rgba(91, 140, 255, 0.07);
-  --display: "Unbounded", "Arial Black", system-ui, sans-serif;
-  --body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
-  color-scheme: dark;
-}
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme="dark"]) {
-    --bg: #f4f6fa; --surface: #ffffff; --raise: #eef2f8; --ink: #0f1722; --muted: #566375;
-    --line: #d9e0ea; --accent: #2f5fe0; --accent-ink: #ffffff; --peak: #c27400; --heart: #d6334b;
-    --grid: rgba(47, 95, 224, 0.06); color-scheme: light;
-  }
-}
-:root[data-theme="light"] {
-  --bg: #f4f6fa; --surface: #ffffff; --raise: #eef2f8; --ink: #0f1722; --muted: #566375;
-  --line: #d9e0ea; --accent: #2f5fe0; --accent-ink: #ffffff; --peak: #c27400; --heart: #d6334b;
-  --grid: rgba(47, 95, 224, 0.06); color-scheme: light;
-}
-* { box-sizing: border-box; }
-body {
-  margin: 0; background: var(--bg); color: var(--ink);
-  font-family: var(--body); font-size: 1.0625rem; line-height: 1.6;
-  background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-  background-size: 48px 48px;
-}
-.wrap {
-  max-width: 72rem; margin: 0 auto;
-  padding-left: max(16px, env(safe-area-inset-left, 0px));
-  padding-right: max(16px, env(safe-area-inset-right, 0px));
-}
-h1, h2, h3 { font-family: var(--display); font-weight: 700; line-height: 1.1; margin: 0; text-wrap: balance; }
-p { margin: 0; }
-a { color: inherit; }
-:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-.tag {
-  font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent);
-}
-.muted { color: var(--muted); }
-
-/* Navegación */
-header.top {
-  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10;
-  background: color-mix(in srgb, var(--bg) 82%, transparent); backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--line);
-}
-header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 0.9rem; }
-.brand { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
-.brand svg { width: 2rem; height: 2rem; flex: none; filter: drop-shadow(0 2px 8px color-mix(in srgb, var(--accent) 45%, transparent)); }
-.brand b { font-family: var(--display); font-weight: 700; font-size: 0.95rem; letter-spacing: 0.12em; }
-.brand small { display: block; font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.2em; color: var(--muted); line-height: 1; }
-nav.links { display: flex; align-items: center; gap: 1.5rem; }
-nav.links a { text-decoration: none; font-weight: 500; font-size: 0.95rem; color: var(--muted); }
-nav.links a:hover { color: var(--ink); }
-nav.links a.btn { color: var(--accent-ink); }
-@media (max-width: 720px) { nav.links a:not(.btn) { display: none; } }
-
-.btn {
-  display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.2rem; border-radius: 10px;
-  font: 600 0.98rem var(--body); text-decoration: none; cursor: pointer; border: 1px solid var(--line);
-  background: var(--surface); color: var(--ink); transition: transform .15s ease, border-color .15s ease;
-}
-.btn:hover { transform: translateY(-2px); border-color: var(--accent); }
-.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
-
-/* Hero */
-.hero .wrap { display: grid; justify-items: center; text-align: center; gap: 1.2rem; padding-block: clamp(3rem, 7vw, 5rem) 0; }
-.hero h1 { font-size: clamp(2.1rem, 6vw, 4.2rem); letter-spacing: -0.02em; max-width: 16ch; }
-.hero h1 .m { color: var(--accent); } .hero h1 .h { color: var(--heart); }
-.hero .lede { max-width: 38rem; font-size: clamp(1.05rem, 1.8vw, 1.22rem); color: var(--muted); }
-.hero .row { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-top: 0.5rem; }
-.stage { display: block; width: 100%; max-width: 100%; aspect-ratio: 16 / 5.5; margin-top: 1rem; }
-@media (max-width: 640px) { .stage { aspect-ratio: 16 / 10; } }
-.hero .wrap.legend { display: flex; justify-content: space-between; gap: 1rem; padding-block: 0.5rem 1.5rem; font: 0.78rem var(--mono); text-align: left; }
-.legend .lm { color: var(--accent); } .legend .lh { color: var(--heart); text-align: right; }
-
-.pillars { border-block: 1px solid var(--line); background: var(--surface); }
-.pillars .wrap { display: flex; justify-content: space-between; gap: 1rem 2rem; flex-wrap: wrap; padding-block: 1.1rem; }
-.pillars span { font-family: var(--mono); font-size: 0.82rem; color: var(--muted); }
-.pillars span::before { content: "▲ "; color: var(--accent); font-size: 0.65rem; }
-
-section { padding-block: clamp(3.5rem, 8vw, 6rem); }
-.sec-head { display: grid; gap: 0.75rem; margin-bottom: 2.5rem; max-width: 42rem; }
-.sec-head h2 { font-size: clamp(1.7rem, 4vw, 2.6rem); letter-spacing: -0.01em; }
-
-/* Servicios agrupados en mente y corazón */
-.group { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 2fr); gap: 1.5rem; padding-block: 1.75rem; border-top: 1px solid var(--line); }
-@media (max-width: 860px) { .group { grid-template-columns: 1fr; } }
-.group-head { display: grid; gap: 0.5rem; align-content: start; }
-.group-head h3 { font-size: 1.3rem; display: flex; align-items: center; gap: 0.55rem; }
-.group-head h3 svg { width: 1.4rem; height: 1.4rem; flex: none; }
-.group-head p { color: var(--muted); font-size: 0.97rem; }
-.group.mind h3 { color: var(--accent); } .group.heart h3 { color: var(--heart); }
-.services { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
-@media (max-width: 560px) { .services { grid-template-columns: 1fr; } }
-.service { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 1.4rem; display: grid; gap: 0.65rem; align-content: start; min-width: 0; transition: border-color .2s ease, transform .2s ease; }
-.group.mind .service:hover { border-color: var(--accent); } .group.heart .service:hover { border-color: var(--heart); }
-.service:hover { transform: translateY(-3px); }
-.service .icon { width: 2.5rem; height: 2.5rem; border-radius: 10px; display: grid; place-items: center; background: var(--raise); }
-.group.mind .icon { color: var(--accent); } .group.heart .icon { color: var(--heart); }
-.service .icon svg { width: 1.3rem; height: 1.3rem; }
-.service h3 { font-size: 1.02rem; }
-.service p { color: var(--muted); font-size: 0.96rem; }
-
-/* Proyectos */
-.work { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
-@media (max-width: 900px) { .work { grid-template-columns: 1fr; max-width: 34rem; } }
-.project { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; display: grid; min-width: 0; }
-.project canvas { display: block; width: 100%; aspect-ratio: 16 / 10; max-width: 100%; border-bottom: 1px solid var(--line); }
-.project .body { padding: 1.25rem 1.4rem 1.5rem; display: grid; gap: 0.6rem; }
-.project h3 { font-size: 1.05rem; }
-.project p { color: var(--muted); font-size: 0.96rem; }
-.chips { display: flex; gap: 0.4rem; flex-wrap: wrap; }
-.chip { font-family: var(--mono); font-size: 0.72rem; padding: 0.2rem 0.55rem; border-radius: 6px; background: var(--raise); color: var(--muted); }
-.sample { font-family: var(--mono); font-size: 0.7rem; color: var(--peak); }
-
-/* Proceso: secuencia real */
-.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; counter-reset: s; }
-@media (max-width: 900px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 520px) { .steps { grid-template-columns: 1fr; } }
-.steps li { counter-increment: s; border-top: 2px solid var(--accent); padding-top: 1rem; display: grid; gap: 0.45rem; }
-.steps li::before { content: "0" counter(s); font-family: var(--mono); font-size: 0.8rem; color: var(--accent); }
-.steps h3 { font-size: 1rem; }
-.steps p { color: var(--muted); font-size: 0.95rem; }
-
-/* Fundador */
-.founder { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(1.5rem, 5vw, 3.5rem); align-items: center; }
-@media (max-width: 780px) { .founder { grid-template-columns: 1fr; } }
-.portrait { aspect-ratio: 4 / 5; max-width: 100%; border-radius: 18px; border: 1px dashed var(--line); background: var(--surface); display: grid; place-items: center; text-align: center; padding: 1.5rem; }
-.founder .text { display: grid; gap: 1rem; max-width: 36rem; }
-.founder h2 { font-size: clamp(1.7rem, 4vw, 2.4rem); }
-
-/* Contacto */
-.contact { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: clamp(1.5rem, 5vw, 3.5rem); }
-@media (max-width: 780px) { .contact { grid-template-columns: 1fr; } }
-.contact .info { display: grid; gap: 1rem; align-content: start; }
-.contact h2 { font-size: clamp(1.7rem, 4vw, 2.6rem); }
-.mail { font-family: var(--mono); font-size: 1rem; user-select: all; word-break: break-all; color: var(--ink); }
-form { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: clamp(1.25rem, 3vw, 2rem); display: grid; gap: 1rem; }
-.field { display: grid; gap: 0.35rem; }
-.field label { font-weight: 600; font-size: 0.9rem; }
-input, select, textarea { font: inherit; font-size: 1rem; width: 100%; padding: 0.7rem 0.85rem; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); }
-textarea { min-height: 7rem; resize: vertical; }
-.note { color: var(--accent); font-size: 0.92rem; }
-
-footer { border-top: 1px solid var(--line); }
-footer .wrap { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding-block: 1.75rem; font-family: var(--mono); font-size: 0.78rem; color: var(--muted); }
-
-@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pabel López | Fotografía, video, diseño y web</title>
+  <meta name="description" content="Fotografía, video, diseño gráfico y páginas web para marcas. Photography, video, graphic design and websites for brands.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header class="top">
-  <div class="wrap">
-    <a class="brand" href="#inicio" aria-label="Grupo Vértice, inicio">
-      <svg viewBox="0 0 32 32" aria-hidden="true">
-        <defs><linearGradient id="vg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--peak)"/><stop offset="0.45" stop-color="var(--accent)"/></linearGradient></defs>
-        <path d="M16 2 L30.5 29 H1.5 Z" fill="url(#vg)"/>
-        <path d="M16 13 L23.5 29 H8.5 Z" fill="var(--bg)"/>
-        <path d="M16 2 L19.2 8 H12.8 Z" fill="var(--peak)"/>
-      </svg>
-      <span><small>GRUPO</small><b>VÉRTICE</b></span>
-    </a>
-    <nav class="links" aria-label="Principal">
-      <a href="#servicios">Servicios</a>
-      <a href="#proyectos">Proyectos</a>
-      <a href="#nosotros">Nosotros</a>
-      <a class="btn primary" href="#contacto">Cotizar</a>
-    </nav>
+<div class="progreso" id="progreso"></div>
+
+<!-- ===== Menú ===== -->
+<header class="barra">
+  <a class="logo" href="#inicio" aria-label="Pabel López"><span>P</span></a>
+  <nav class="menu">
+    <a href="#proyectos" data-en="Projects">Proyectos</a>
+    <a href="#servicios" data-en="Services">Servicios</a>
+    <a href="#sobre-mi" data-en="About">Sobre mí</a>
+  </nav>
+  <div class="header-der">
+    <button class="idioma" id="idioma" type="button" aria-label="Cambiar idioma / Change language"><span class="es">ES</span> / <span class="en">EN</span></button>
+    <a class="pildora" href="#contacto" data-en="Work with me">Trabajemos</a>
   </div>
 </header>
 
-<main id="inicio">
-  <div class="hero">
-    <div class="wrap">
-      <p class="tag">Agencia digital · Guatemala</p>
-      <h1><span class="m">Código</span> con <span class="h">corazón</span>.</h1>
-      <p class="lede">Mente que construye, corazón que inspira. Programación, diseño, marketing, fotografía y video para que tu marca cobre vida.</p>
-      <div class="row">
-        <a class="btn primary" href="#contacto">Cotiza tu proyecto</a>
-        <a class="btn" href="#servicios">Ver servicios</a>
-      </div>
-      <canvas class="stage" id="stage" aria-label="Una neurona hecha de código que late como un corazón"></canvas>
-    </div>
-    <div class="wrap legend"><span class="lm">◉ Mente · Programación</span><span class="lh">Corazón · Creatividad ♥</span></div>
-  </div>
+<main class="contenedor">
 
-  <div class="pillars">
-    <div class="wrap">
-      <span>Desarrollo web</span><span>Diseño gráfico</span><span>Marketing digital</span><span>Fotografía</span><span>Video</span>
-    </div>
-  </div>
-
-  <section id="servicios">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="tag">Servicios</p>
-        <h2>Mente y corazón para tu marca</h2>
-        <p class="muted">La lógica del código y la emoción de la imagen, en un solo equipo.</p>
-      </div>
-      <div class="group mind">
-        <div class="group-head">
-          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><circle cx="4" cy="6" r="1.6"/><circle cx="20" cy="6" r="1.6"/><circle cx="4" cy="18" r="1.6"/><circle cx="20" cy="18" r="1.6"/><path d="M5.3 7 9.6 10.4M18.7 7l-4.3 3.4M5.3 17l4.3-3.4M18.7 17l-4.3-3.4"/></svg>Mente</h3>
-          <p>La lógica y la estructura: que todo funcione rápido y sin fallas.</p>
-        </div>
-        <div class="services">
-        <article class="service">
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 7-5 5 5 5M16 7l5 5-5 5"/></svg></div>
-          <h3>Desarrollo web</h3>
-          <p>Sitios a la medida, rápidos y adaptados a celular, con tu dominio y correo profesional.</p>
-        </article>
-        <article class="service">
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8M21 3v5h-5"/></svg></div>
-          <h3>Rediseño y mantenimiento</h3>
-          <p>Modernizamos tu página actual y la mantenemos al día cada mes, en cualquier plataforma.</p>
-        </article>
-        </div>
-      </div>
-      <div class="group heart">
-        <div class="group-head">
-          <h3><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-9.5-9.3C1 8 3.4 4.5 7 4.5c2 0 3.6 1.1 5 3 1.4-1.9 3-3 5-3 3.6 0 6 3.5 4.5 7.2C19.5 16.4 12 21 12 21Z"/></svg>Corazón</h3>
-          <p>La emoción: lo que hace que tus clientes sientan algo por tu marca.</p>
-        </div>
-        <div class="services">
-        <article class="service">
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 21 20H3Z"/><circle cx="12" cy="14" r="2"/></svg></div>
-          <h3>Diseño gráfico y marca</h3>
-          <p>Logos, identidad visual y piezas para redes, hechos en Illustrator y Photoshop.</p>
-        </article>
-        <article class="service">
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17 9 11l4 4 8-8M15 7h6v6"/></svg></div>
-          <h3>Marketing digital</h3>
-          <p>Contenido y campañas en Facebook e Instagram para que llegues a más clientes.</p>
-        </article>
-        <article class="service">
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4Z"/><circle cx="12" cy="13" r="3.5"/></svg></div>
-          <h3>Fotografía</h3>
-          <p>Producto, local y equipo, editado en Lightroom y Photoshop, listo para web y redes.</p>
-        </article>
-        <article class="service">
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="m16 10 5-3v10l-5-3"/></svg></div>
-          <h3>Edición de video</h3>
-          <p>Reels, anuncios y videos de marca editados en Premiere, listos para publicar.</p>
-        </article>
-        </div>
-      </div>
+  <!-- ===== 1. Portada ===== -->
+  <section class="portada" id="inicio">
+    <span class="etiqueta">Pabel López</span>
+    <h1 class="aparecer" data-en="Photography, video, design and websites for brands that want to look professional.">Fotografía, video, diseño y páginas web para marcas que quieren verse profesionales.</h1>
+    <div class="portada-botones aparecer">
+      <a class="pildora pildora-llena" href="#proyectos" data-en="See projects">Ver proyectos</a>
+      <a class="pildora" href="#contacto" data-en="Work with me">Trabajemos</a>
     </div>
   </section>
 
+  <figure class="portada-foto aparecer"><img src="Imagenes/portada.jpg" alt="Retrato de Pabel López"></figure>
+
+  <hr class="linea">
+
+  <!-- ===== 2. Proyectos ===== -->
   <section id="proyectos">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="tag">Proyectos</p>
-        <h2>Trabajo reciente</h2>
-        <p class="muted">El problema, la solución y las herramientas de cada proyecto.</p>
-      </div>
-      <div class="work">
-        <article class="project">
-          <canvas data-seed="1" data-hue="28" aria-label="Vista previa del sitio de la panadería"></canvas>
-          <div class="body">
-            <span class="sample">Proyecto de muestra</span>
-            <h3>Panadería del barrio</h3>
-            <p>Sitio con menú, pedidos por WhatsApp y fotos de producto tomadas en el local.</p>
-            <div class="chips"><span class="chip">Web</span><span class="chip">Fotografía</span></div>
-          </div>
-        </article>
-        <article class="project">
-          <canvas data-seed="2" data-hue="220" aria-label="Vista previa del sitio de la barbería"></canvas>
-          <div class="body">
-            <span class="sample">Proyecto de muestra</span>
-            <h3>Barbería con reservas</h3>
-            <p>Marca nueva, sitio con reservas en línea y campaña de lanzamiento en Instagram.</p>
-            <div class="chips"><span class="chip">Marca</span><span class="chip">Web</span><span class="chip">Marketing</span></div>
-          </div>
-        </article>
-        <article class="project">
-          <canvas data-seed="3" data-hue="160" aria-label="Vista previa de la campaña para el café"></canvas>
-          <div class="body">
-            <span class="sample">Proyecto de muestra</span>
-            <h3>Café de altura</h3>
-            <p>Sesión de fotos, reels del proceso del café y tienda en línea para vender por bolsa.</p>
-            <div class="chips"><span class="chip">Video</span><span class="chip">Fotografía</span><span class="chip">Web</span></div>
-          </div>
-        </article>
-      </div>
+    <div class="seccion-cabeza">
+      <h2 data-en="Projects">Proyectos</h2>
+      <span class="etiqueta" data-en="Selected work">Trabajo seleccionado</span>
+    </div>
+    <div class="proyectos-grid">
+      <a class="proyecto aparecer" href="caso.html?p=esperanza">
+        <div class="proyecto-foto"><img src="Imagenes/esperanza.jpg" alt="Esperanza Handmade"></div>
+        <h3 data-en="Online store design and development for Esperanza Handmade">Diseño y desarrollo de tienda en línea para Esperanza Handmade</h3>
+        <span class="proyecto-tipo" data-en="Web design · Web development">Diseño web · Desarrollo web</span>
+      </a>
+      <a class="proyecto aparecer" href="caso.html?p=love">
+        <div class="proyecto-foto"><img src="Imagenes/love.jpg" alt="Love Guatemala"></div>
+        <h3 data-en="Website design and development for Love Guatemala">Diseño y desarrollo del sitio web de Love Guatemala</h3>
+        <span class="proyecto-tipo" data-en="Web design · Web development">Diseño web · Desarrollo web</span>
+      </a>
     </div>
   </section>
 
-  <section id="proceso">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="tag">Proceso</p>
-        <h2>Cómo trabajamos</h2>
-      </div>
-      <ol class="steps">
-        <li><h3>Diagnóstico</h3><p>Conocemos tu negocio, tus clientes y tus metas.</p></li>
-        <li><h3>Propuesta</h3><p>Te mostramos el diseño y el plan, con precio claro.</p></li>
-        <li><h3>Producción</h3><p>Programamos, fotografiamos y creamos el contenido.</p></li>
-        <li><h3>Lanzamiento</h3><p>Publicamos y medimos los resultados contigo.</p></li>
-      </ol>
+  <hr class="linea">
+
+  <!-- ===== 3. Servicios ===== -->
+  <section id="servicios">
+    <div class="seccion-cabeza">
+      <h2 data-en="Services">Servicios</h2>
+      <span class="etiqueta" data-en="What I do">Lo que hago</span>
+    </div>
+    <div class="servicios-lista">
+      <a class="servicio aparecer" href="#contacto">
+        <span class="servicio-num">01</span>
+        <h3 data-en="Websites">Páginas web</h3>
+        <p data-en="Fast, modern websites, designed and hand-coded.">Páginas rápidas y modernas, diseñadas y hechas con código.</p>
+        <span class="servicio-flecha">↗</span>
+      </a>
+      <a class="servicio aparecer" href="#contacto">
+        <span class="servicio-num">02</span>
+        <h3 data-en="Photography">Fotografía</h3>
+        <p data-en="Products, portraits and events with studio quality.">Productos, retratos y eventos con calidad de estudio.</p>
+        <span class="servicio-flecha">↗</span>
+      </a>
+      <a class="servicio aparecer" href="#contacto">
+        <span class="servicio-num">03</span>
+        <h3 data-en="Video and editing">Video y edición</h3>
+        <p data-en="Reels and commercials people watch to the end.">Reels y comerciales que la gente ve hasta el final.</p>
+        <span class="servicio-flecha">↗</span>
+      </a>
+      <a class="servicio aparecer" href="#contacto">
+        <span class="servicio-num">04</span>
+        <h3 data-en="Graphic design">Diseño gráfico</h3>
+        <p data-en="Logos, posts and print pieces people remember.">Logos, publicaciones e impresos que se recuerdan.</p>
+        <span class="servicio-flecha">↗</span>
+      </a>
     </div>
   </section>
 
-  <section id="nosotros">
-    <div class="wrap founder">
-      <div class="portrait"><span class="tag" style="color:var(--muted)">Retrato del fundador<br>(vertical 4:5)</span></div>
-      <div class="text">
-        <p class="tag">Nosotros</p>
-        <h2>Fundado por Pabel López</h2>
-        <p class="muted">Grupo Vértice nace de unir la fotografía, el diseño y la programación. Cada proyecto cuida la imagen tanto como la tecnología, porque una marca necesita las dos cosas para destacar.</p>
-        <p class="muted">Trabajamos con negocios de Guatemala y de cualquier parte del mundo, en español y de forma remota.</p>
-        <div class="chips">
-          <span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">Git</span>
-          <span class="chip">Photoshop</span><span class="chip">Illustrator</span><span class="chip">Lightroom</span><span class="chip">Premiere</span><span class="chip">Meta Ads</span>
-        </div>
-      </div>
+  <hr class="linea">
+
+  <!-- ===== 4. Sobre mí ===== -->
+  <section id="sobre-mi" class="sobre">
+    <div class="sobre-foto aparecer"><img src="Imagenes/sobre-mi.jpg" alt="Pabel López"></div>
+    <div class="sobre-texto aparecer">
+      <span class="etiqueta" data-en="About me">Sobre mí</span>
+      <h2 data-en="Hi, I’m Pabel.">Hola, soy Pabel.</h2>
+      <p data-en="I’m a photographer, designer and web developer. I bring image and technology together so your brand looks as professional as it really is.">Soy fotógrafo, diseñador y desarrollador web. Uno imagen y tecnología para que tu marca se vea tan profesional como realmente es.</p>
+      <p data-en="One person, one style, from the first photo to your website online.">Una sola persona, un mismo estilo, desde la primera foto hasta tu página en internet.</p>
     </div>
   </section>
 
-  <section id="contacto">
-    <div class="wrap contact">
-      <div class="info">
-        <p class="tag">Contacto</p>
-        <h2>Hablemos de tu proyecto</h2>
-        <p class="muted">Respondemos en menos de 24 horas.</p>
-        <p class="tag" style="margin-top:0.5rem;color:var(--muted)">Correo</p>
-        <p class="mail">hola@pabellopez.com</p>
+  <hr class="linea">
+
+  <!-- ===== 5. Contacto ===== -->
+  <section id="contacto" class="contacto">
+    <h2 class="aparecer" data-en="Work with me">Trabajemos juntos</h2>
+    <p class="aparecer" data-en="Tell me about your project and I’ll reply within 24 hours.">Cuéntame de tu proyecto y te respondo en menos de 24 horas.</p>
+    <!-- Formulario: los mensajes llegan a tu correo por medio de Formspree (gratis).
+         Cambia TU_ID_DE_FORMSPREE por el código que te da Formspree. -->
+    <form class="formulario aparecer" id="formulario" action="https://formspree.io/f/TU_ID_DE_FORMSPREE" method="POST">
+      <div class="campos">
+        <label for="nombre"><span data-en="Name">Nombre</span><input id="nombre" name="nombre" type="text" required autocomplete="name"></label>
+        <label for="correo"><span data-en="Email">Correo</span><input id="correo" name="email" type="email" required autocomplete="email"></label>
       </div>
-      <form id="contact-form" novalidate>
-        <div class="field"><label for="f-name">Nombre</label><input id="f-name" name="nombre" autocomplete="name"></div>
-        <div class="field"><label for="f-email">Correo</label><input id="f-email" name="correo" type="email" autocomplete="email"></div>
-        <div class="field"><label for="f-type">¿Qué necesitas?</label>
-          <select id="f-type" name="servicio">
-            <option>Sitio web</option><option>Rediseño o mantenimiento</option><option>Diseño gráfico y marca</option><option>Marketing digital</option><option>Fotografía o video</option><option>Oferta de empleo</option>
-          </select>
-        </div>
-        <div class="field"><label for="f-msg">Mensaje</label><textarea id="f-msg" name="mensaje"></textarea></div>
-        <button class="btn primary" type="submit" style="justify-self:start">Enviar mensaje</button>
-        <p class="note" id="form-note" hidden>Gracias. Este formulario es una vista previa; al publicar el sitio lo conectaremos al correo.</p>
-      </form>
-    </div>
+      <label for="mensaje"><span data-en="Tell me about your project">Cuéntame de tu proyecto</span><textarea id="mensaje" name="mensaje" rows="5" required></textarea></label>
+      <button class="pildora pildora-llena" type="submit" data-en="Send message">Enviar mensaje</button>
+      <p class="form-estado" id="form-estado" role="status"></p>
+    </form>
   </section>
 </main>
 
-<footer>
-  <div class="wrap">
-    <span>© 2026 Grupo Vértice · Guatemala</span>
-    <span>Desarrollo web · Diseño · Marketing · Fotografía y video</span>
-  </div>
+<footer class="pie">
+  <nav>
+    <a href="#proyectos" data-en="Projects">Proyectos</a>
+    <a href="#servicios" data-en="Services">Servicios</a>
+    <a href="#sobre-mi" data-en="About">Sobre mí</a>
+    <a href="#contacto" data-en="Work with me">Trabajemos</a>
+  </nav>
+  <span>© 2026 Pabel López</span>
 </footer>
 
-<script>
-(function () {
-  var root = document.documentElement;
-  function tok(n) { return getComputedStyle(root).getPropertyValue(n).trim(); }
-  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  // Neurona hecha de código (mente) que late como un corazón.
-  (function () {
-    var cv = document.getElementById('stage'), ctx = cv.getContext('2d');
-    var seed = 31; function R() { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; }
-    var VW = 1000, VH = 350, SX = 400, SY = 175, paths = [];
-    // dendritas: ramas que reciben señales (izquierda)
-    function grow(x, y, ang, len, depth, d0) {
-      var pts = [], n = 8, bend = (R() - 0.5) * 0.5, dist = d0;
-      for (var k = 0; k <= n; k++) {
-        if (k) { var a = ang + bend * k / n; x += Math.cos(a) * len / n; y += Math.sin(a) * len / n; dist += len / n; }
-        pts.push({ x: x, y: y, d: dist });
-      }
-      paths.push({ kind: 'in', pts: pts });
-      if (depth > 0) [-1, 1].forEach(function (sg) { grow(x, y, ang + bend + sg * (0.35 + R() * 0.3), len * (0.62 + R() * 0.12), depth - 1, dist); });
-    }
-    [2.35, 2.75, 3.14, 3.55, 3.95].forEach(function (a) { grow(SX - 22 * Math.cos(Math.PI - a), SY - 22 * Math.sin(Math.PI - a) * -1, a + (R() - 0.5) * 0.15, 95 + R() * 25, 2, 22); });
-    // axón: el cable largo que envía la señal (derecha)
-    var ax = [], d = 26;
-    for (var x = SX + 26; x <= 860; x += 8) { var y = SY + Math.sin((x - SX) / 70) * 14; if (ax.length) d += Math.hypot(x - ax[ax.length - 1].x, y - ax[ax.length - 1].y); ax.push({ x: x, y: y, d: d }); }
-    paths.push({ kind: 'out', pts: ax });
-    var end = ax[ax.length - 1], axLen = end.d;
-    function term(x, y, ang, len, depth, d0) {
-      var pts = [], n = 5, dist = d0;
-      for (var k = 0; k <= n; k++) { if (k) { x += Math.cos(ang) * len / n; y += Math.sin(ang) * len / n; dist += len / n; } pts.push({ x: x, y: y, d: dist }); }
-      paths.push({ kind: 'out', pts: pts, tip: depth === 0 });
-      if (depth > 0) [-1, 1].forEach(function (sg) { term(x, y, ang + sg * (0.4 + R() * 0.2), len * 0.7, depth - 1, dist); });
-    }
-    [-0.55, 0, 0.55].forEach(function (a) { term(end.x, end.y, a, 50, 1, end.d); });
-    var maxOut = 0, maxIn = 0;
-    paths.forEach(function (pa) { pa.pts.forEach(function (q) { if (pa.kind === 'out') maxOut = Math.max(maxOut, q.d); else maxIn = Math.max(maxIn, q.d); }); });
-    // caracteres de código a lo largo de cada rama
-    var chars = '01{}<>/;=()[]&|', glyphs = [];
-    paths.forEach(function (pa) {
-      var acc = 0;
-      for (var k = 1; k < pa.pts.length; k++) {
-        var A = pa.pts[k - 1], B = pa.pts[k], L = Math.hypot(B.x - A.x, B.y - A.y);
-        for (var u = acc; u < L; u += 13) { var f = u / L; glyphs.push({ x: A.x + (B.x - A.x) * f, y: A.y + (B.y - A.y) * f, d: A.d + (B.d - A.d) * f, kind: pa.kind, c: chars[Math.floor(R() * chars.length)], ph: R() * 6.28 }); }
-        acc = (acc - L) % 13; if (acc < 0) acc += 13;
-      }
-    });
-    var ring = []; for (var k = 0; k < 18; k++) ring.push({ a: k / 18 * Math.PI * 2, c: chars[Math.floor(R() * chars.length)] });
-    function gs(x, sd) { return Math.exp(-(x * x) / (2 * sd * sd)); }
-    function rgb(hex) { hex = hex.replace('#', ''); return [0, 2, 4].map(function (k) { return parseInt(hex.substr(k, 2), 16); }); }
-    function frame(t) {
-      var r = cv.getBoundingClientRect(), dpr = window.devicePixelRatio || 1;
-      if (cv.width !== Math.round(r.width * dpr)) { cv.width = Math.round(r.width * dpr); cv.height = Math.round(r.height * dpr); }
-      var w = cv.width, h = cv.height, sc = Math.min(w / VW, h / VH), ox = (w - VW * sc) / 2, oy = (h - VH * sc) / 2;
-      var A = rgb(tok('--accent')), B = rgb(tok('--heart')), P = rgb(tok('--peak'));
-      // ciclo de un latido (lub-dub), unos 60 por minuto
-      var cyc = reduce ? 0.12 : (t / 1100) % 1;
-      var beat = gs(cyc - 0.02, 0.035) + 0.55 * gs(cyc - 0.16, 0.035);
-      var inPos = (1 - cyc) * maxIn, outPos = cyc * (maxOut + 60);
-      ctx.clearRect(0, 0, w, h);
-      function X(v) { return ox + v * sc; } function Y(v) { return oy + v * sc; }
-      function sway(q) { return Math.sin(t * 0.0007 + q.x * 0.012) * 3 * Math.min(1, Math.abs(q.x - SX) / 200); }
-      // trazo fino bajo el código
-      ctx.lineWidth = 1 * dpr; ctx.strokeStyle = 'rgba(' + A.join(',') + ',0.18)';
-      paths.forEach(function (pa) { ctx.beginPath(); pa.pts.forEach(function (q, k) { var xx = X(q.x), yy = Y(q.y + sway(q)); k ? ctx.lineTo(xx, yy) : ctx.moveTo(xx, yy); }); ctx.stroke(); });
-      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-      glyphs.forEach(function (g) {
-        var e = g.kind === 'in' ? gs(g.d - inPos, 18) * (cyc > 0.05 ? 1 : 0) : gs(g.d - outPos, 22);
-        var c = A.map(function (v, k) { return Math.round(v + (B[k] - v) * e); });
-        ctx.globalAlpha = 0.45 + 0.55 * e;
-        ctx.fillStyle = 'rgb(' + c.join(',') + ')';
-        ctx.font = '500 ' + Math.round((11 + 5 * e) * sc * dpr / Math.max(sc, 0.001) * Math.min(1.2, Math.max(0.75, sc))) + 'px "IBM Plex Mono", ui-monospace, monospace';
-        ctx.fillText(g.c, X(g.x), Y(g.y + sway(g)));
-      });
-      ctx.globalAlpha = 1;
-      // cuerpo de la neurona: late como un corazón
-      var cx = X(SX), cy = Y(SY), rad = 22 * sc * (1 + 0.18 * beat);
-      var glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, rad * 3.2);
-      glow.addColorStop(0, 'rgba(' + B.join(',') + ',' + (0.25 + 0.45 * beat).toFixed(3) + ')'); glow.addColorStop(1, 'rgba(' + B.join(',') + ',0)');
-      ctx.fillStyle = glow; ctx.beginPath(); ctx.arc(cx, cy, rad * 3.2, 0, 7); ctx.fill();
-      var core = A.map(function (v, k) { return Math.round(v + (B[k] - v) * Math.min(1, 0.35 + beat)); });
-      ctx.fillStyle = 'rgb(' + core.join(',') + ')'; ctx.shadowColor = 'rgb(' + B.join(',') + ')'; ctx.shadowBlur = 20 * dpr * (0.4 + beat);
-      ctx.beginPath(); ctx.arc(cx, cy, rad, 0, 7); ctx.fill(); ctx.shadowBlur = 0;
-      ctx.fillStyle = 'rgb(' + P.join(',') + ')'; ctx.beginPath(); ctx.arc(cx, cy, rad * 0.32, 0, 7); ctx.fill();
-      ctx.font = '500 ' + Math.round(12 * dpr * Math.min(1.2, Math.max(0.75, sc))) + 'px "IBM Plex Mono", ui-monospace, monospace';
-      ring.forEach(function (o) { var rr = rad + 12 * sc * dpr / dpr; ctx.globalAlpha = 0.5 + 0.5 * beat; ctx.fillStyle = 'rgb(' + core.join(',') + ')'; ctx.fillText(o.c, cx + Math.cos(o.a + t * 0.0002) * rr, cy + Math.sin(o.a + t * 0.0002) * rr); });
-      ctx.globalAlpha = 1;
-      // chispas en las puntas cuando llega la señal
-      paths.forEach(function (pa) { if (!pa.tip) return; var q = pa.pts[pa.pts.length - 1], e = gs(q.d - outPos, 20);
-        if (e > 0.05) { ctx.globalAlpha = e; ctx.fillStyle = 'rgb(' + P.join(',') + ')'; ctx.shadowColor = ctx.fillStyle; ctx.shadowBlur = 14 * dpr; ctx.beginPath(); ctx.arc(X(q.x), Y(q.y + sway(q)), 4 * dpr, 0, 7); ctx.fill(); ctx.shadowBlur = 0; ctx.globalAlpha = 1; } });
-      if (!reduce) requestAnimationFrame(frame);
-    }
-    requestAnimationFrame(frame);
-  })();
-
-  // Maquetas de proyectos hasta tener capturas reales.
-  function rand(seed) { return function () { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; }; }
-  document.querySelectorAll('.project canvas').forEach(function (c) {
-    var r = rand(+c.dataset.seed * 97), hue = +c.dataset.hue, w = c.width = 800, h = c.height = 500, x = c.getContext('2d');
-    var g = x.createLinearGradient(0, 0, w, h);
-    g.addColorStop(0, 'hsl(' + hue + ',55%,58%)'); g.addColorStop(1, 'hsl(' + (hue + 35) + ',45%,24%)');
-    x.fillStyle = g; x.fillRect(0, 0, w, h);
-    x.fillStyle = 'rgba(255,255,255,0.94)'; x.fillRect(90, 60, 620, 400);
-    x.fillStyle = 'rgba(15,23,34,0.9)'; x.fillRect(90, 60, 620, 30);
-    x.fillStyle = 'hsl(' + hue + ',50%,52%)'; x.fillRect(115, 115, 270, 170);
-    x.fillStyle = 'rgba(15,23,34,0.85)'; x.fillRect(410, 125, 250, 22);
-    x.fillStyle = 'rgba(15,23,34,0.3)'; for (var j = 0; j < 4; j++) x.fillRect(410, 165 + j * 22, 200 + r() * 50, 10);
-    x.fillStyle = 'hsl(' + hue + ',65%,45%)'; x.fillRect(410, 260, 110, 28);
-    for (var k = 0; k < 3; k++) { x.fillStyle = 'hsl(' + hue + ',35%,' + (60 + k * 8) + '%)'; x.fillRect(115 + k * 200, 310, 180, 125); }
-  });
-
-  document.getElementById('contact-form').addEventListener('submit', function (e) {
-    e.preventDefault(); document.getElementById('form-note').hidden = false;
-  });
-})();
-</script>
+<script src="script.js"></script>
 </body>
 </html>
