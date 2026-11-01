@@ -4,7 +4,7 @@
 const casos = {
   esperanza: {
     mockup: 'esperanza.jpg',
-    galeria: ['esperanza-6.jpg', 'esperanza-4.jpg', 'esperanza-5.jpg', 'esperanza-7.jpg'],
+    galeria: [], // fotos pequeñas quitadas hasta tener capturas grandes
     palabra: ['ESPE', 'RAN', 'ZA'], relleno: 'esperanza-1.jpg', fondo: 'esperanza-2.jpg',
     animado: { fondo: '#f4efe9', color: '#3b2216', etiquetaFondo: '#8a4b2a', etiquetaColor: '#fff' },
     es: {
@@ -15,17 +15,17 @@ const casos = {
       publico: 'Personas que buscan un regalo especial o una pieza que dure años, y que valoran lo hecho a mano.',
       galeriaPies: ['Foto de estilo de vida', 'Colección de regalos para él', 'Productos recomendados', 'Página de catálogo'],
       titulo: 'Esperanza Handmade: diseño y desarrollo de tienda en línea',
-      herramientas: 'WordPress · Código (HTML y CSS) · Photoshop · Lightroom',
+      herramientas: 'Squarespace · Código (HTML y CSS) · Photoshop · Lightroom',
       habilidades: 'Tienda en línea · Código a la medida · Fotografía de producto y modelo',
       intro: 'Caso de estudio: una tienda en línea para piezas de cuero hechas a mano',
-      contexto: 'Esperanza Handmade hace bolsas, carteras y accesorios de cuero a mano. Necesitaba una tienda en línea donde cada pieza se viera como lo que es: un trabajo artesanal, no un producto más. Su sitio ya existía en WordPress: yo creé la tienda, le di un toque moderno con código propio y tomé las fotos de producto y de modelo.',
+      contexto: 'Esperanza Handmade hace bolsas, carteras y accesorios de cuero a mano. Necesitaba una tienda en línea donde cada pieza se viera como lo que es: un trabajo artesanal, no un producto más. Creé la tienda en Squarespace con código propio, sin plantillas, y tomé las fotos de producto y de modelo.',
       reto: ['Mostrar muchos productos sin que la página se sienta llena.', 'Que cada producto tenga claros su precio, medidas, peso y colores.', 'Ayudar a que la persona siga descubriendo más piezas.'],
       solucion: [['Diseño limpio', 'fondo claro, mucho espacio y una tipografía con serifa que se siente artesanal.'], ['Catálogo por categorías', 'bolsas, carteras, accesorios y regalos para él, con una foto de estilo de vida.'], ['Página de producto', 'galería de fotos, selector de color, medidas, peso y botón de compra.'], ['Recomendaciones', 'una sección de "También te puede gustar" al final de cada producto.']],
       destacado: [['Fotos grandes', 'para que el cuero sea el protagonista.'], ['Texto que se escribe solo', 'para contar la historia de cada pieza.']],
       etiqueta: 'Hecho a mano',
       frase: 'Cada pieza está hecha a mano con cuero genuino.',
       pieAnimado: 'Animación de texto que se escribe sola',
-      figuras: [['esperanza-1.jpg', 'Catálogo con foto de estilo de vida'], ['esperanza-2.jpg', 'Página de producto con galería'], ['esperanza-3.jpg', 'Selector de color, medidas y peso']],
+      figuras: [['esperanza-1.jpg', 'Catálogo con foto de estilo de vida'], ['esperanza-2.jpg', 'Página de producto con galería'], ['esperanza.jpg', 'Vista general de la tienda']],
       resultado: 'Una tienda clara y elegante, donde el producto es el centro y comprar es fácil desde el celular o la computadora.'
     },
     en: {
@@ -36,23 +36,23 @@ const casos = {
       publico: 'People looking for a special gift or a piece that lasts for years, who value handmade work.',
       galeriaPies: ['Lifestyle photo', 'Gifts for him collection', 'Recommended products', 'Catalog page'],
       titulo: 'Esperanza Handmade: online store design and development',
-      herramientas: 'WordPress · Code (HTML and CSS) · Photoshop · Lightroom',
+      herramientas: 'Squarespace · Code (HTML and CSS) · Photoshop · Lightroom',
       habilidades: 'Online store · Custom code · Product and model photography',
       intro: 'Case study: an online store for handmade leather pieces',
-      contexto: 'Esperanza Handmade makes leather bags, wallets and accessories by hand. They needed an online store where each piece looks like what it is: craft work, not just another product. Their site already ran on WordPress: I built the store, gave it a modern look with custom code and shot the product and model photos.',
+      contexto: 'Esperanza Handmade makes leather bags, wallets and accessories by hand. They needed an online store where each piece looks like what it is: craft work, not just another product. I built the store on Squarespace with custom code, no templates, and shot the product and model photos.',
       reto: ['Show many products without the page feeling crowded.', 'Make price, size, weight and colors clear for every product.', 'Help people keep discovering more pieces.'],
       solucion: [['Clean design', 'light background, lots of space and a serif typeface that feels handmade.'], ['Catalog by category', 'bags, wallets, accessories and gifts for him, with a lifestyle photo.'], ['Product page', 'photo gallery, color picker, size, weight and a buy button.'], ['Recommendations', 'a "You may also like" section under every product.']],
       destacado: [['Big photos', 'so the leather takes center stage.'], ['Self-typing text', 'to tell the story of each piece.']],
       etiqueta: 'Handmade',
       frase: 'Each piece is handcrafted from genuine leather.',
       pieAnimado: 'Self-typing text animation',
-      figuras: [['esperanza-1.jpg', 'Catalog with a lifestyle photo'], ['esperanza-2.jpg', 'Product page with gallery'], ['esperanza-3.jpg', 'Color picker, size and weight']],
+      figuras: [['esperanza-1.jpg', 'Catalog with a lifestyle photo'], ['esperanza-2.jpg', 'Product page with gallery'], ['esperanza.jpg', 'Store overview']],
       resultado: 'A clear, elegant store where the product is the focus and buying is easy on phone or computer.'
     }
   },
   love: {
     mockup: 'love.jpg',
-    galeria: ['love-1.jpg', 'love-5.jpg', 'love-4.jpg', 'love-3.jpg'],
+    galeria: [], // fotos pequeñas quitadas hasta tener capturas grandes
     palabra: ['LO', 'VE'], relleno: 'love-1.jpg', fondo: 'love-1.jpg',
     animado: { fondo: '#1c2a4a', color: '#d9b26a', etiquetaFondo: '#d9b26a', etiquetaColor: '#1c2a4a' },
     es: {
@@ -73,7 +73,7 @@ const casos = {
       etiqueta: 'Inscripciones 2027',
       frase: 'Tu historia puede comenzar aquí.',
       pieAnimado: 'Animación de texto que se escribe sola',
-      figuras: [['love-1.jpg', 'Portada con foto aérea del centro'], ['love-2.jpg', 'Sección de inscripciones 2027'], ['love-3.jpg', 'Perfil del estudiante con fotos reales']],
+      figuras: [['love-1.jpg', 'Portada con foto aérea del centro'], ['love-2.jpg', 'Sección de inscripciones 2027'], ['love.jpg', 'Vista general del sitio']],
       resultado: 'Un sitio claro y cercano, que muestra el lugar como es y lleva a las familias paso a paso hasta la inscripción.'
     },
     en: {
@@ -94,7 +94,7 @@ const casos = {
       etiqueta: '2027 enrollment',
       frase: 'Your story can start here.',
       pieAnimado: 'Self-typing text animation',
-      figuras: [['love-1.jpg', 'Hero with an aerial photo of the campus'], ['love-2.jpg', '2027 enrollment section'], ['love-3.jpg', 'Student profile with real photos']],
+      figuras: [['love-1.jpg', 'Hero with an aerial photo of the campus'], ['love-2.jpg', '2027 enrollment section'], ['love.jpg', 'Site overview']],
       resultado: 'A clear, friendly site that shows the place as it is and walks families step by step to enrollment.'
     }
   }
@@ -194,12 +194,12 @@ function pintar(idioma) {
     </section>
 
     <!-- 4b. Galería -->
-    <section class="diapo d-galeria aparecer">
+    ${caso.galeria.length ? `<section class="diapo d-galeria aparecer">
       <div class="d-cabeza"><h2>${h.galeria}</h2><span class="d-corchete">[ ${caso.galeria.length} ${en ? 'images' : 'imágenes'} ]</span></div>
       <div class="d-mosaico">
         ${caso.galeria.map((g, i) => `<figure class="m${i + 1}"><img src="Imagenes/${g}" alt="${t.galeriaPies[i]}"><figcaption><b>${num(i)}</b> ${t.galeriaPies[i]}</figcaption></figure>`).join('')}
       </div>
-    </section>
+    </section>` : ''}
 
     <!-- 5. Detalle -->
     <section class="diapo d-detalle aparecer">

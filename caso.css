@@ -78,7 +78,7 @@
 /* 5. Detalle */
 .d-detalle { display: grid; grid-template-columns: 1.3fr 1fr; }
 .d-detalle figure { margin: 0; background: #111; display: flex; align-items: center; }
-.d-detalle figure img { width: 100%; height: 100%; object-fit: cover; }
+.d-detalle figure img { width: 100%; height: 100%; object-fit: contain; }
 .d-una { grid-template-columns: 1fr; }
 
 /* 6. Cierre */
